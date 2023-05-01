@@ -1,0 +1,407 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>JavaWeb实现文件上传和下载 | 屠一乐</title><meta name="author" content="屠一乐"><meta name="copyright" content="屠一乐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="环境配置：导入依赖 jar 包。  commons-fileupload-1.4.jar commons-io-2.6.jar   上传表单的enctype属性enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码。 语法1&lt;form enctype&#x3D;&quot;value&quot;&gt;  属性值   值 描述    application&#x2F;x-www-fo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb实现文件上传和下载">
+<meta property="og:url" content="http://example.com/2022/12/04/JavaWeb%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD/index.html">
+<meta property="og:site_name" content="屠一乐">
+<meta property="og:description" content="环境配置：导入依赖 jar 包。  commons-fileupload-1.4.jar commons-io-2.6.jar   上传表单的enctype属性enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码。 语法1&lt;form enctype&#x3D;&quot;value&quot;&gt;  属性值   值 描述    application&#x2F;x-www-fo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://view.lixingyong.com/images/2022/08/19/v2-a14f2242da33f7977dcb50fe2856817c_r.jpg">
+<meta property="article:published_time" content="2022-12-03T17:37:10.000Z">
+<meta property="article:modified_time" content="2023-05-01T03:15:29.000Z">
+<meta property="article:author" content="屠一乐">
+<meta property="article:tag" content="apache 服务器 java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://view.lixingyong.com/images/2022/08/19/v2-a14f2242da33f7977dcb50fe2856817c_r.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/12/04/JavaWeb%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?02d2a92c6bfa7e1fed03fcc69fcd843d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaWeb实现文件上传和下载',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-01 11:15:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="屠一乐" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://view.lixingyong.com/images/2022/08/19/v2-a14f2242da33f7977dcb50fe2856817c_r.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="屠一乐"><img class="site-icon" src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg"/><span class="site-name">屠一乐</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JavaWeb实现文件上传和下载</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-03T17:37:10.000Z" title="发表于 2022-12-04 01:37:10">2022-12-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-01T03:15:29.000Z" title="更新于 2023-05-01 11:15:29">2023-05-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JavaWeb/">JavaWeb</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JavaWeb实现文件上传和下载"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><span id="more"></span>
+
+<p>环境配置：导入依赖 jar 包。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload/1.4"><code>commons-fileupload-1.4.jar</code></a></p>
+<p><a target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/commons-io/commons-io/2.6"><code>commons-io-2.6.jar</code></a></p>
+</li>
+</ul>
+<h1 id="上传表单的enctype属性"><a href="#上传表单的enctype属性" class="headerlink" title="上传表单的enctype属性"></a>上传表单的enctype属性</h1><p>enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码。</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form enctype=&quot;value&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="属性值"><a href="#属性值" class="headerlink" title="属性值"></a>属性值</h4><table>
+<thead>
+<tr>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">application&#x2F;x-www-form-urlencoded</td>
+<td align="left">在发送前编码所有字符（默认）</td>
+</tr>
+<tr>
+<td align="left">multipart&#x2F;form-data</td>
+<td align="left">不对字符编码。<strong>在使用包含文件上传控件的表单时，必须使用该值。</strong></td>
+</tr>
+<tr>
+<td align="left">text&#x2F;plain</td>
+<td align="left">空格转换为 “+” 加号，但不对特殊字符编码。主要用于大量文本数据的传递</td>
+</tr>
+</tbody></table>
+<h1 id="ServletFileUpload对象解析请求"><a href="#ServletFileUpload对象解析请求" class="headerlink" title="ServletFileUpload对象解析请求"></a>ServletFileUpload对象解析请求</h1><p>ServletFileUpload类是Apache组件处理文件上传的核心高级类，通过使用parseRequest(HttpServletRequest)方法可以将HTML中每个表单提交的数据封装成个Fileltem对象，然后以List列表的形式返回。</p>
+<h2 id="ServletFileUpload类方法"><a href="#ServletFileUpload类方法" class="headerlink" title="ServletFileUpload类方法"></a>ServletFileUpload类方法</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方法名称</th>
+<th>方法描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>void setSizeMax (long sizeMax)</td>
+<td>设置请求信息内容的最大允许字 节数</td>
+</tr>
+<tr>
+<td>2</td>
+<td>List parseRequest (HttpServletRequest request)</td>
+<td>解析form表单提交的数据返回一个 Fileltem实例的集合</td>
+</tr>
+<tr>
+<td>3</td>
+<td>static final boolean isMultipartContent (HttpServlet Requestrequest)</td>
+<td>判断请求提交的方式是否是“multi- part&#x2F;form-data”类型</td>
+</tr>
+<tr>
+<td>4</td>
+<td>void setHeaderEncoding (String encoding)</td>
+<td>设置转换时所使用的字符集编码</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="http://www.yunhe.cn/xwdt/hydt/2760.html">ServletFileUpload详细简绍</a></p>
+<p>FileItem接口常用方法</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方法名称</th>
+<th>方法描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>public boolean isFormField（)</td>
+<td>判断Fileltem对象所封装的数据类型，普通表单字段返 回true，文件表单字段返回false</td>
+</tr>
+<tr>
+<td>2</td>
+<td>public String getName ()</td>
+<td>获得文件字段中所上传的文件名，普通表单字段调用此 方法返回 null</td>
+</tr>
+<tr>
+<td>3</td>
+<td>public String getFieldName ()</td>
+<td>返回表单字段元素的name属性值</td>
+</tr>
+<tr>
+<td>4</td>
+<td>public void write (File file)</td>
+<td>将Fileltem对象中保存的文件数据内容写入指定的文 件中</td>
+</tr>
+<tr>
+<td>5</td>
+<td>public String getString ()</td>
+<td>将Fileltem对象中保存的主体内容以一个字符串返回， 其有一个重载方法getString(String encoding），可指定 所采用的编码集</td>
+</tr>
+<tr>
+<td>6</td>
+<td>public long getSize（)</td>
+<td>返回单个上传文件的字节数</td>
+</tr>
+</tbody></table>
+<p>FileItemFactory 接口的常用方法</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>序号</td>
+<td>方法名称</td>
+<td>方法描述</td>
+</tr>
+<tr>
+<td>1</td>
+<td>public void setSizeThreshold (int sizeThreshold)</td>
+<td>设置内存缓冲区的大小</td>
+</tr>
+<tr>
+<td>2</td>
+<td>pubic void setRepositoryPath (String path)</td>
+<td>设置临时文件存放的目录</td>
+</tr>
+</tbody></table>
+<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><p>① 表单数据提交方式：<code>POST</code><br>② 表单提交数据的类型：<code>&lt;form ... enctype=multipart/form-data&gt;...&lt;/form&gt;</code><br>③ 表单中设置文件上传项：<code>&lt;input type=&quot;file&quot; ... /&gt;</code></p>
+<p>页面</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">&quot;java&quot;</span> <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span> contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;使用Commons-FileUpload组件实现文件上传&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/FileUpload&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">    用户名:&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;userName&quot;</span>&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">&lt;%--    加上multiple属性实现一次上次多个文件--%&gt;</span><br><span class="line">    选择文件:&lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;myFile&quot;</span> multiple&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;上传&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>servlet页面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> file;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.fileupload.FileItem;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.fileupload.FileItemFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.fileupload.FileUploadException;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.fileupload.disk.DiskFileItemFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.fileupload.servlet.ServletFileUpload;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: BRILIANT屠一乐</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2022/12/2 15:41</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet(description = &quot;FileUpload&quot;, urlPatterns = &#123;&quot;/FileUpload&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FileUpload</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        response.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        response.setContentType(<span class="string">&quot;text/html&quot;</span>);</span><br><span class="line">        <span class="comment">//enctype 属性是否是multipart/form-data</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">isMultipart</span> <span class="operator">=</span> ServletFileUpload.isMultipartContent(request);</span><br><span class="line">        <span class="comment">//获取输出流</span></span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">writer</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">        <span class="comment">//上传者</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">userName</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="comment">//上传的文件名，最后输出用</span></span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">fileStr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (isMultipart) &#123;</span><br><span class="line">                <span class="comment">//创建工厂实例</span></span><br><span class="line">                <span class="type">FileItemFactory</span> <span class="variable">factory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DiskFileItemFactory</span>();</span><br><span class="line">                <span class="comment">//ServletFileUp-load实例依赖于FileItemFactory工厂</span></span><br><span class="line">                <span class="type">ServletFileUpload</span> <span class="variable">upload</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServletFileUpload</span>(factory);</span><br><span class="line">                <span class="comment">//解析表单字段 封装成一个FileItem实例的集合</span></span><br><span class="line">                List&lt;FileItem&gt; itemList = upload.parseRequest(request);</span><br><span class="line">                <span class="comment">//迭代器</span></span><br><span class="line">                Iterator&lt;FileItem&gt; iterator = itemList.iterator();</span><br><span class="line">                <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">                    <span class="comment">//依次解析每一个FileItem实例，即表单</span></span><br><span class="line">                    <span class="type">FileItem</span> <span class="variable">fileItem</span> <span class="operator">=</span> iterator.next();</span><br><span class="line">                    <span class="keyword">if</span> (fileItem.isFormField()) &#123;</span><br><span class="line">                        <span class="comment">//普通表单字段</span></span><br><span class="line">                        <span class="comment">//如果表单属性name的值的userName, 就获取这个表单字段的值</span></span><br><span class="line">                        <span class="keyword">if</span> (fileItem.getFieldName().equals(<span class="string">&quot;userName&quot;</span>)) &#123;</span><br><span class="line">                            <span class="comment">//getString方法：重载方法getString(String encoding），可指定所采用的编码集</span></span><br><span class="line">                            userName = fileItem.getString(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">//文件表单字段</span></span><br><span class="line">                        <span class="comment">// getName()获得文件字段中所上传的文件名，普通表单字段调用此方法返回 null</span></span><br><span class="line">                        <span class="type">String</span> <span class="variable">fileUpName</span> <span class="operator">=</span> fileItem.getName();<span class="comment">//用户上传的文件名</span></span><br><span class="line">                        <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;E:\\idea_program\\Web\\file\\src\\main\\webapp\\temp\\&quot;</span> + fileUpName);<span class="comment">//要保存到的文件</span></span><br><span class="line">                        <span class="keyword">if</span> (!file.exists()) &#123;</span><br><span class="line"><span class="comment">//                            file.createNewFile();//一开始肯定是没有的，所以先创建出来</span></span><br><span class="line">                        &#125;</span><br><span class="line">                        fileItem.write(file);<span class="comment">//写入，保存到目标文件</span></span><br><span class="line">                        fileStr.append(fileUpName + <span class="string">&quot;、&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                fileStr.replace(fileStr.lastIndexOf(<span class="string">&quot;、&quot;</span>), fileStr.length(), <span class="string">&quot;&quot;</span>);</span><br><span class="line">                writer.print(<span class="string">&quot;&lt;script&gt;alert(&#x27;用户&quot;</span> + userName + <span class="string">&quot;上传了文件&quot;</span> + fileStr + <span class="string">&quot;&#x27;)&lt;/script&gt;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h1><p>jsp页面</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">&quot;java&quot;</span> contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span></span><br><span class="line">         pageEncoding=<span class="string">&quot;UTF-8&quot;</span> %&gt;</span><br><span class="line">&lt;%<span class="meta">@taglib</span> prefix=<span class="string">&quot;c&quot;</span> uri=<span class="string">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> %&gt;</span><br><span class="line">&lt;%<span class="meta">@page</span> isELIgnored=<span class="string">&quot;false&quot;</span> %&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;文件下载列表&lt;/h1&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot; down.do? path=&lt;%=getServletContext().getRealPath(&quot;</span><span class="number">1.</span>png<span class="string">&quot;)%&gt;&quot;</span>&gt;</span><br><span class="line">    QQ图片<span class="number">20220704200735.</span>jpg</span><br><span class="line">&lt;/a&gt;&lt;br&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot; down.do? path=&lt;%=getServletContext().getRealPath(&quot;</span>deity.rar<span class="string">&quot;)%&gt;&quot;</span>&gt;</span><br><span class="line">    deity.rar</span><br><span class="line">&lt;/a&gt;&lt;br&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot; down.do? path=&lt;%=getServletContext().getRealPath(&quot;</span>maggie.rar<span class="string">&quot;)%&gt;&quot;</span>&gt;</span><br><span class="line">    maggie.rar</span><br><span class="line">&lt;/a&gt;&lt;br&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot; down.do? path=&lt;%=getServletContext().getRealPath(&quot;</span>rvncsse.rar<span class="string">&quot;)%&gt;&quot;</span>&gt;</span><br><span class="line">    rvncsse.rar</span><br><span class="line">&lt;/a&gt;&lt;br&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>servlet页面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sunyang; <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: BRILIANT屠一乐</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2022/12/3 19:39</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet(&quot;/Download&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Download</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;下载&quot;</span>);</span><br><span class="line">        System.out.println(request.getParameter(<span class="string">&quot;path&quot;</span>));</span><br><span class="line">        <span class="type">String</span> <span class="variable">path</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(request.getServletContext().getRealPath(<span class="string">&quot;1.png&quot;</span>).getBytes(<span class="string">&quot;iso-8859-1&quot;</span>));</span><br><span class="line">        <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(path);</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(file);</span><br><span class="line">        <span class="comment">//通过响应建立输出流</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">os</span> <span class="operator">=</span> response.getOutputStream();</span><br><span class="line">        response.addHeader(<span class="string">&quot;Content-Disposition&quot;</span>, <span class="string">&quot;attachment;filename=&quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(file.getName().getBytes(<span class="string">&quot;gbk&quot;</span>), <span class="string">&quot;iso-8859-1&quot;</span>));</span><br><span class="line">        response.addHeader(<span class="string">&quot;Content-Length&quot;</span>, String.valueOf(file.length()));</span><br><span class="line">        response.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        <span class="comment">//通知浏览器以下载的方式打开</span></span><br><span class="line">        response.setContentType(<span class="string">&quot;application/octet-stream&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">data</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((data = in.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">            os.write(data);</span><br><span class="line">        &#125;</span><br><span class="line">        os.close();</span><br><span class="line">        in.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="built_in">this</span>.doGet(request,response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>博客迁移dca3eb4c-07fc-443b-b497-abaf1dcf935c</p>
+<blockquote>
+<p>直接使用Servlet类和输入&#x2F;输出流实现。与访问服务器文件不同的是，要实现文件的下载，不仅需要指定文件的路径，该需要在HTTP协议中设置两个响应消息头，如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设定接收程序处理数据的方式</span></span><br><span class="line">Content-Disposition:attachment; filename =</span><br><span class="line"><span class="comment">//设定实体内容的MIME类型</span></span><br><span class="line">Content-Type:application/x-msdownload</span><br></pre></td></tr></table></figure></blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">屠一乐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/12/04/JavaWeb%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD/">http://example.com/2022/12/04/JavaWeb%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">屠一乐</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/apache-%E6%9C%8D%E5%8A%A1%E5%99%A8-java/">apache 服务器 java</a></div><div class="post_share"><div class="social-share" data-image="https://view.lixingyong.com/images/2022/08/19/v2-a14f2242da33f7977dcb50fe2856817c_r.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://view.lixingyong.com/images/2023/04/28/mm_facetoface_collect_qrcode_1682691038620.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://view.lixingyong.com/images/2023/04/28/1682691081397.jpeg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="要请我喝冰阔落嘛"/></a><div class="post-qr-code-desc">要请我喝冰阔落嘛</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/03/%E3%80%90Spring%20%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B2%E3%80%91/" title="【Spring 入门教程2】"><img class="cover" src="https://view.lixingyong.com/images/2022/08/12/wallhaven_57.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【Spring 入门教程2】</div></div></a></div><div class="next-post pull-right"><a href="/2022/10/23/%E3%80%90Javaweb%E3%80%91%E5%85%A8%E9%9D%A2%E5%AD%A6%E4%B9%A0JavaWeb%20%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E8%AD%A6%E5%91%8A/" title="【Javaweb】全面学习JavaWeb 万字长文警告"><img class="cover" src="https://view.lixingyong.com/images/2022/08/19/v2-8a5b5f899ad28c7406bbb09d450c2d3d_r.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【Javaweb】全面学习JavaWeb 万字长文警告</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">屠一乐</div><div class="author-info__description">屠一乐的个人博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/tuyile-icu"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/tuyile-icu" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="mailto:3189248615@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这里有很多好康的学习资料哦🤣🤣</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E8%A1%A8%E5%8D%95%E7%9A%84enctype%E5%B1%9E%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">上传表单的enctype属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">属性值</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ServletFileUpload%E5%AF%B9%E8%B1%A1%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82"><span class="toc-number">2.</span> <span class="toc-text">ServletFileUpload对象解析请求</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ServletFileUpload%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">ServletFileUpload类方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">4.</span> <span class="toc-text">文件下载</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/29/uml%E5%9B%BE/" title="uml图"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-pk6d9j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="uml图"/></a><div class="content"><a class="title" href="/2023/04/29/uml%E5%9B%BE/" title="uml图">uml图</a><time datetime="2023-04-28T18:56:40.000Z" title="发表于 2023-04-29 02:56:40">2023-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/28/hello-world/" title="Hello World"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-pk6d9j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2023/04/28/hello-world/" title="Hello World">Hello World</a><time datetime="2023-04-28T06:47:22.938Z" title="发表于 2023-04-28 14:47:22">2023-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day02/" title="Java设计模式-day02"><img src="https://view.lixingyong.com/images/2022/08/19/v2-b50a22dd3b9f2fa877b37058fa8c9607_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java设计模式-day02"/></a><div class="content"><a class="title" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day02/" title="Java设计模式-day02">Java设计模式-day02</a><time datetime="2023-04-22T16:34:44.000Z" title="发表于 2023-04-23 00:34:44">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day01/" title="Java设计模式-day01"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-8oz17j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java设计模式-day01"/></a><div class="content"><a class="title" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day01/" title="Java设计模式-day01">Java设计模式-day01</a><time datetime="2023-04-22T16:32:34.000Z" title="发表于 2023-04-23 00:32:34">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/10/2023%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFJava_%E5%A4%A7%E5%AD%A6B%E7%BB%84%E7%9C%9F%E9%A2%98/" title="2023年第十四届蓝桥杯Java_大学B组真题"><img src="https://view.lixingyong.com/images/2022/08/15/wallhaven-n6rp1l_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2023年第十四届蓝桥杯Java_大学B组真题"/></a><div class="content"><a class="title" href="/2023/04/10/2023%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFJava_%E5%A4%A7%E5%AD%A6B%E7%BB%84%E7%9C%9F%E9%A2%98/" title="2023年第十四届蓝桥杯Java_大学B组真题">2023年第十四届蓝桥杯Java_大学B组真题</a><time datetime="2023-04-10T08:51:38.000Z" title="发表于 2023-04-10 16:51:38">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By 屠一乐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">又来找我玩啦🥰</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

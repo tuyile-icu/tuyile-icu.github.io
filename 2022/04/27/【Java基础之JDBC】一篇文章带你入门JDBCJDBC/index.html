@@ -1,0 +1,335 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【Java基础之JDBC】一篇文章带你入门JDBCJDBC | 屠一乐</title><meta name="author" content="屠一乐"><meta name="copyright" content="屠一乐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="🌈博客主页：屠一乐的博客📅 发文时间：2022.4.27📕Java网络编程🎈 一定存在只有你才能做成的事🌹 博主水平有限，如有错误，欢迎指正欢迎各位👍收藏💎评论✉  JDBC连接数据库 🍕🍕JDBC功能类详解  🍭🍭DriverManager  🌮🌮如何添加jar包   🍖🍖Connection 🍨🍨Statement 🍓🍓JDBC案例 🍩🍩JDBC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Java基础之JDBC】一篇文章带你入门JDBCJDBC">
+<meta property="og:url" content="http://example.com/2022/04/27/%E3%80%90Java%E5%9F%BA%E7%A1%80%E4%B9%8BJDBC%E3%80%91%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E5%85%A5%E9%97%A8JDBCJDBC/index.html">
+<meta property="og:site_name" content="屠一乐">
+<meta property="og:description" content="🌈博客主页：屠一乐的博客📅 发文时间：2022.4.27📕Java网络编程🎈 一定存在只有你才能做成的事🌹 博主水平有限，如有错误，欢迎指正欢迎各位👍收藏💎评论✉  JDBC连接数据库 🍕🍕JDBC功能类详解  🍭🍭DriverManager  🌮🌮如何添加jar包   🍖🍖Connection 🍨🍨Statement 🍓🍓JDBC案例 🍩🍩JDBC">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://view.lixingyong.com/images/2022/08/19/v2-47f439309db5623886de628adca366a7_r.jpg">
+<meta property="article:published_time" content="2022-04-26T16:12:19.000Z">
+<meta property="article:modified_time" content="2023-05-01T03:15:29.000Z">
+<meta property="article:author" content="屠一乐">
+<meta property="article:tag" content="Java项目 java intellij-idea">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://view.lixingyong.com/images/2022/08/19/v2-47f439309db5623886de628adca366a7_r.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/04/27/%E3%80%90Java%E5%9F%BA%E7%A1%80%E4%B9%8BJDBC%E3%80%91%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E5%85%A5%E9%97%A8JDBCJDBC/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?02d2a92c6bfa7e1fed03fcc69fcd843d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【Java基础之JDBC】一篇文章带你入门JDBCJDBC',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-01 11:15:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="屠一乐" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://view.lixingyong.com/images/2022/08/19/v2-47f439309db5623886de628adca366a7_r.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="屠一乐"><img class="site-icon" src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg"/><span class="site-name">屠一乐</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【Java基础之JDBC】一篇文章带你入门JDBCJDBC</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-26T16:12:19.000Z" title="发表于 2022-04-27 00:12:19">2022-04-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-01T03:15:29.000Z" title="更新于 2023-05-01 11:15:29">2023-05-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【Java基础之JDBC】一篇文章带你入门JDBCJDBC"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><span id="more"></span>
+
+<blockquote>
+<p>🌈博客主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_67563237?type=blog">屠一乐的博客</a><br>📅 发文时间：2022.4.27<br>📕<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_67563237/article/details/124059652?spm=1001.2014.3001.5502">Java网络编程</a><br>🎈 一定存在只有你才能做成的事<br>🌹 博主水平有限，如有错误，欢迎指正<br>欢迎各位👍收藏💎评论✉<br><img src="https://img-blog.csdnimg.cn/55f0f01def94441697d02221e9135304.png#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="JDBC连接数据库"><a href="#JDBC连接数据库" class="headerlink" title="JDBC连接数据库"></a>JDBC连接数据库</h3><ul>
+<li><a href="#JDBC_10">🍕🍕JDBC功能类详解</a></li>
+<li><ul>
+<li><a href="#DriverManager_17">🍭🍭DriverManager</a></li>
+<li><ul>
+<li><a href="#jar_43">🌮🌮如何添加jar包</a></li>
+</ul>
+</li>
+<li><a href="#Connection_70">🍖🍖Connection</a></li>
+<li><a href="#Statement_84">🍨🍨Statement</a></li>
+<li><a href="#JDBC_106">🍓🍓JDBC案例</a></li>
+<li><a href="#JDBC_212">🍩🍩JDBC工具类</a></li>
+<li><a href="#SQL_307">🌮🌮SQL注入攻击</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="🍕🍕JDBC功能类详解"><a href="#🍕🍕JDBC功能类详解" class="headerlink" title="🍕🍕JDBC功能类详解"></a>🍕🍕JDBC功能类详解</h1><p>JDBC是如何连接数据库的？看图看图<br><img src="https://img-blog.csdnimg.cn/34153ef8b3b148598ec594a64cc642bb.png" alt="请添加图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/0e1d7b723c4a48ed9e03c40ca87c4f5a.png" alt="请添加图片描述"></p>
+<h2 id="🍭🍭DriverManager"><a href="#🍭🍭DriverManager" class="headerlink" title="🍭🍭DriverManager"></a>🍭🍭DriverManager</h2><p>1.DriverManager驱动管理对象<br>①注册驱动<br>●注册给定的驱动程序：static void registerDriver(Driver driver);<br>●写代码使用：Class.forName(“com.mysql.jdbc.Driver”);<br>·在com.mysql.jdbc.Driver类中存在静态代码块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span>&#123;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	java.sql.DriverManager.registerDriver(<span class="keyword">new</span> <span class="title class_">Driver</span>());</span><br><span class="line">]<span class="keyword">catch</span> (SQLException E)&#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Can&#x27;t register driver!&quot;</span>);&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：<br>·我们不需要通过DriverManageri调用静态方法registerDriver(),因为只要Driver类被使用，则会执行其静态代码块完成注册驱动<br>·mysql5之后可以省略注驱动的步骤。在jar包中，存在一个java.sql.Driver配置文件，文件中指定了com.mysql.idbc.Driver</p>
+<p>1.DriverManager驱动管理对象<br>获取数据库连接<br>获取数据库连接对象：static Connection getConnection(String url,String user,String password);<br>返回值：Connection数据库连接对象<br>参数</p>
+<h3 id="🌮🌮如何添加jar包"><a href="#🌮🌮如何添加jar包" class="headerlink" title="🌮🌮如何添加jar包"></a>🌮🌮如何添加jar包</h3><p>jar包是什么？<br>jar包就是 Java Archive File，顾名思义，它的应用是与 Java 息息相关的，是 Java 的一种文档格式，是一种与平台无关的文件格式，可将多个文件合成一个文件。jar 包与 zip 包非常相似——准确地说，它就是 zip 包，所以叫它文件包。jar 与 zip 唯一的区别就是在 jar 文件的内容中，包含了一个 META-INF&#x2F;MANIFEST.MF 文件，该文件是在生成 jar 文件的时候自动创建的，作为jar里面的”详情单”，包含了该Jar包的版本、创建人和类搜索路径Class-Path等信息，当然如果是可执行Jar包，会包含Main-Class属性，表明Main方法入口，尤其是较为重要的Class-Path和Main-Class。</p>
+<p>在数据库官网下载对应版本后不用解压，直接复制到lib包下然后<img src="https://img-blog.csdnimg.cn/cacc69f77b5345e290d2c8d11755e027.png" alt="请添加图片描述"><br>展开后像这样就导入成功了<img src="https://img-blog.csdnimg.cn/163a99164eaf460b80ff79a8284c529f.png" alt="在这里插入图片描述"></p>
+<p><strong>注意：若url出现异常com.mysql.cj.jdbc.Driver，看异常信息改</strong></p>
+<ul>
+<li><p>JDBC URL 用于标识一个被注册的驱动程序，驱动程序管理器通过这个 URL 选择正确的驱动程序，从而建立到数据库的连接。<br>详细问题请看<a target="_blank" rel="noopener" href="https://blog.csdn.net/superdangbo/article/details/78732700?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165098612716781483764988%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=165098612716781483764988&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-78732700-null-null-2~all~first_rank_ecpm_v1~hot_rank-1-78732700.142%5Ev9%5Epc_search_result_control_group,157%5Ev4%5Enew_style&utm_term=jdbc&spm=1018.2226.3001.4187">com.mysql.jdbc.Driver 和 com.mysql.cj.jdbc.Driver的区别 serverTimezone设定</a></p>
+</li>
+<li><p>JDBC URL的标准由三部分组成，各部分间用冒号分隔。</p>
+<ul>
+<li><strong>jdbc:子协议:子名称</strong></li>
+<li><strong>协议</strong>：JDBC URL中的协议总是jdbc</li>
+<li><strong>子协议</strong>：子协议用于标识一个数据库驱动程序</li>
+<li><strong>子名称</strong>：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了<strong>定位数据库</strong>提供足够的信息。包含<strong>主机名</strong>(对应服务端的ip地址)<strong>，端口号，数据库名</strong></li>
+</ul>
+</li>
+<li><p>举例：</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/1f3ae542aebb4f45987e248d59ebdf3a.png" alt="请添加图片描述"></p>
+<p>总的来说，关系是这鸭子的：</p>
+<p><img src="https://img-blog.csdnimg.cn/e59847eb88d84dc4bcbca2ee03b61611.png" alt="请添加图片描述"></p>
+<h2 id="🍖🍖Connection"><a href="#🍖🍖Connection" class="headerlink" title="🍖🍖Connection"></a>🍖🍖Connection</h2><p>1.Connection数据库连接对象<br>①获取执行者对象<br>获取普通执行者对象：Statement createStatement0;<br>获取预编译执行者对象：PreparedStatement prepareStatement(String sql);<br>②管理事务<br>开启事务：setAutoCommit(boolean autoCommit);<br>参数为false,则开启事务。<br>提交事务：commit():<br>回滚事务：rollbacko;<br>③释放资源<br>立即将数据库连接对象释放：void close0:</p>
+<h2 id="🍨🍨Statement"><a href="#🍨🍨Statement" class="headerlink" title="🍨🍨Statement"></a>🍨🍨Statement</h2><p>1.Statement执行sql语句的对象<br>①执行DML语句：int executeUpdate(String sql)<br>返回值int:返回影响的行数。<br>参数sql:可以执行insert、update、delete语句。<br>②执行DQL语句：ResultSet executeQuery(String sql)):<br>返回值ResultSet:封装查询的结果。<br>参数sql:可以执行selecti语句。<br>③释放资源<br>立即将执行者对象释放：void close();</p>
+<p>ResultSet<br>1.ResultSet结果集对象<br>①判断结果集中是否还有数据：boolean next()<br>有数据返回true,并将索引向下移动一行，没有数据返回false。<br>②获取结果集中的数据：XXX getXxx(“列名”)；<br>XXX代表数据类型（要获取某列数据，这一列的数据类型）。<br>例如：String getString(“name”) ;int getInt(“age”);<br>③释放资源<br>立即将结果集对象释放：void close();</p>
+<h2 id="🍓🍓JDBC案例"><a href="#🍓🍓JDBC案例" class="headerlink" title="🍓🍓JDBC案例"></a>🍓🍓JDBC案例</h2><p>数据准备</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.创建数据库和数据表</span><br><span class="line">-- 创建db14数据库</span><br><span class="line">CREATE DATABASE db14;</span><br><span class="line">-- 使用db14数据库</span><br><span class="line">USE db14;</span><br><span class="line">-- 创建student表</span><br><span class="line">CREATE TABLE student(</span><br><span class="line">    sid INT PRIMARY KEY AUTO_INCREMENT,-- 学生id</span><br><span class="line">    NAME VARCHAR(20),-- 学生姓名</span><br><span class="line">    age INT,-- 学生年龄</span><br><span class="line">    birthday DATE,-- 学生生日</span><br><span class="line">);</span><br><span class="line">-- 添加数据</span><br><span class="line">INSERT INT0 studer VALUES(NULL,&#x27;张三&#x27;,23,&#x27;1999-09-23&#x27;),</span><br><span class="line">                        (NULL,&#x27;李四&#x27;，24，&#x27;1998-08-10&#x27;),</span><br><span class="line">                        (NULL,&#x27;王五&#x27;，25，&#x27;1996-06-06&#x27;),</span><br><span class="line">                        (NULL,&#x27;赵六&#x27;，26，&#x27;1994-10-20&#x27;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.创建Student类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">student</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer sid;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> Data birthday;</span><br></pre></td></tr></table></figure>
+
+<p>注意：<br>自定义类的功能是为了封装表中每列数据，成员变量和列保持一致<br>所有基本数据类型需要使用对应包装类，以免表中url值无法赋值</p>
+<p>需求实现<br>1.需求一：查询所有学生信息<br>2.需求二：根据id查询学生信息<br>3.需求三：新增学生信息<br>4.需求四：修改学生信息<br>5.需求五：删除学生信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StuDaoImp</span> <span class="keyword">implements</span> <span class="title class_">StuDao</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;Student&gt; <span class="title function_">findAll</span><span class="params">()</span> &#123;</span><br><span class="line">        ArrayList&lt;Student&gt; students = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">Statement</span> <span class="variable">statement</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">ResultSet</span> <span class="variable">resultSet</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            connection = Jutils.getCon();</span><br><span class="line">            statement = connection.createStatement();</span><br><span class="line">            resultSet = statement.executeQuery(<span class="string">&quot;SELECT * From student&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (resultSet.next())&#123;</span><br><span class="line">                <span class="type">Integer</span> <span class="variable">id</span> <span class="operator">=</span> resultSet.getInt(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">                <span class="type">Integer</span> <span class="variable">age</span> <span class="operator">=</span> resultSet.getInt(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">                <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> resultSet.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">                <span class="type">Integer</span> <span class="variable">score</span> <span class="operator">=</span> resultSet.getInt(<span class="string">&quot;socre&quot;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(id,name,age,score);</span><br><span class="line">                System.out.println(student);</span><br><span class="line">                students.add(student);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (SQLException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            Jutils.close(statement,resultSet,connection);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> students;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">insert</span><span class="params">(Student student)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">update</span><span class="params">(small_program.linksql.text.Student student)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">del</span><span class="params">(Integer id)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="🍩🍩JDBC工具类"><a href="#🍩🍩JDBC工具类" class="headerlink" title="🍩🍩JDBC工具类"></a>🍩🍩JDBC工具类</h2><p>抽取工具类<br>1.编写配置文件<br>在src目录下创建config.properties配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">driverclass=com.mysql.jdbc.Driver</span><br><span class="line">url=jdbc:mysq1:<span class="comment">//localhost:3306/db14</span></span><br><span class="line">username=root</span><br><span class="line">password=你的数据库密码</span><br></pre></td></tr></table></figure>
+
+<p>4.Student表的CRUD操作整合页面<br>①用户表的数据准备</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创健用户表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">USER</span>(</span><br><span class="line">    uid <span class="type">VARCHAR</span>(<span class="number">50</span>)<span class="keyword">PRIMARY</span> KEY,<span class="comment">-- 用户id</span></span><br><span class="line">    ucode <span class="type">VARCHAR</span>(<span class="number">50</span>),<span class="comment">-- 用户标识</span></span><br><span class="line">    loginname <span class="type">VARCHAR</span>(<span class="number">100</span>),<span class="comment">-- 登录用户名</span></span><br><span class="line">    PASSWORD <span class="type">VARCHAR</span>(<span class="number">100</span>),<span class="comment">-- 登录密码</span></span><br><span class="line">    username <span class="type">VARCHAR</span>(<span class="number">100</span>),<span class="comment">-- 用户名</span></span><br><span class="line">    gender <span class="type">VARCHAR</span>(<span class="number">10</span>),<span class="comment">-- 用户性别</span></span><br><span class="line">    birthday <span class="type">DATE</span>,<span class="comment">-- 出生日期</span></span><br><span class="line">    dutydate <span class="type">DATE</span><span class="comment">-- 入职日期</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 添加一条测试数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">&#x27;user&#x27;</span><span class="keyword">VALUES</span> (<span class="string">&#x27;11111111&#x27;</span>,<span class="string">&#x27;zhangsan001&#x27;</span>,<span class="string">&#x27;zhangsan&#x27;</span>,<span class="string">&#x27;1234&#x27;</span>,<span class="string">&#x27;男&#x27;</span>，<span class="string">&#x27;2008-10-28&#x27;</span>，<span class="string">&#x27;2018-10-28&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Jutils</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Jutils</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String driverClass;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String url;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String username;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String password;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Connection connection;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">            properties.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;src\\stu.properties&quot;</span>));</span><br><span class="line">            driverClass = properties.getProperty(<span class="string">&quot;driverClass&quot;</span>);</span><br><span class="line">            url = properties.getProperty(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">            username = properties.getProperty(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">            password = properties.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title function_">getCon</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            connection = DriverManager.getConnection(url, username, password);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> connection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">(Statement statement, ResultSet resultSet, Connection connection)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (statement != <span class="literal">null</span>) &#123;</span><br><span class="line">                statement.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (resultSet != <span class="literal">null</span>) &#123;</span><br><span class="line">                resultSet.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (connection != <span class="literal">null</span>) &#123;</span><br><span class="line">                connection.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="🌮🌮SQL注入攻击"><a href="#🌮🌮SQL注入攻击" class="headerlink" title="🌮🌮SQL注入攻击"></a>🌮🌮SQL注入攻击</h2><p>1.什么是SQL注入攻击<br>●就是利用sq语句的漏洞来对系统进行攻击<br>2.SQL注入攻击场所</p>
+<p>即在密码处加入SQL语句</p>
+<p>3.SQL注入攻击的原理<br>●按照正常道理来说，我们在密码处输入的所有内容，都应该认为是密码的组成<br>●但是现在Statement对像在执行sql语句时，将密码的一部分内容当做查询条件来执行了<br>4.SQL注入攻击的解决<br>●PreparedStatement预编译执行者对象<br>·在执行Sq语句之前，将sq语句进行提前编译。明确sq语句的格式后，就不会改变了。剩余的内容都会认为是参数<br>·SQL语句中的参数使用？作为占位符<br>●为？占位符赋值的方法：setXxx(参数1，参数2)；<br>·Xxx代表：数据类型<br>·参数1：？的位置编号（编号从1开始）<br>·参数2：？的实际参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String sql <span class="string">&quot;DELETE FROM user WHERE name=?&quot;</span>;</span><br><span class="line">pstm conn.preparestatement(sq1);</span><br><span class="line">pstm.setstring(<span class="number">1</span>,<span class="string">&quot;张三&quot;</span>)；</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">屠一乐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/04/27/%E3%80%90Java%E5%9F%BA%E7%A1%80%E4%B9%8BJDBC%E3%80%91%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E5%85%A5%E9%97%A8JDBCJDBC/">http://example.com/2022/04/27/%E3%80%90Java%E5%9F%BA%E7%A1%80%E4%B9%8BJDBC%E3%80%91%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E5%85%A5%E9%97%A8JDBCJDBC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">屠一乐</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java%E9%A1%B9%E7%9B%AE-java-intellij-idea/">Java项目 java intellij-idea</a></div><div class="post_share"><div class="social-share" data-image="https://view.lixingyong.com/images/2022/08/19/v2-47f439309db5623886de628adca366a7_r.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://view.lixingyong.com/images/2023/04/28/mm_facetoface_collect_qrcode_1682691038620.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://view.lixingyong.com/images/2023/04/28/1682691081397.jpeg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="要请我喝冰阔落嘛"/></a><div class="post-qr-code-desc">要请我喝冰阔落嘛</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/22/%E3%80%90Web%E5%89%8D%E7%AB%AF%E3%80%91%E8%B6%85%E8%AF%A6%E7%BB%86css%E5%9F%BA%E7%A1%80/" title="【Web前端】超详细css基础"><img class="cover" src="https://view.lixingyong.com/images/2022/08/12/wallhaven-pk6d9j_1920x1080.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【Web前端】超详细css基础</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/16/%E3%80%90MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E3%80%91%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E5%85%A5%E9%97%A8/" title="【MySQL数据库基础】一篇文章带你入门"><img class="cover" src="https://view.lixingyong.com/images/2022/08/15/wallhaven-n6rp1l_1920x1080.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【MySQL数据库基础】一篇文章带你入门</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">屠一乐</div><div class="author-info__description">屠一乐的个人博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/tuyile-icu"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/tuyile-icu" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="mailto:3189248615@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这里有很多好康的学习资料哦🤣🤣</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDBC%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">JDBC连接数据库</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%8D%95%F0%9F%8D%95JDBC%E5%8A%9F%E8%83%BD%E7%B1%BB%E8%AF%A6%E8%A7%A3"><span class="toc-number"></span> <span class="toc-text">🍕🍕JDBC功能类详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8D%AD%F0%9F%8D%ADDriverManager"><span class="toc-number"></span> <span class="toc-text">🍭🍭DriverManager</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8C%AE%F0%9F%8C%AE%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0jar%E5%8C%85"><span class="toc-number">1.</span> <span class="toc-text">🌮🌮如何添加jar包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8D%96%F0%9F%8D%96Connection"><span class="toc-number"></span> <span class="toc-text">🍖🍖Connection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8D%A8%F0%9F%8D%A8Statement"><span class="toc-number"></span> <span class="toc-text">🍨🍨Statement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8D%93%F0%9F%8D%93JDBC%E6%A1%88%E4%BE%8B"><span class="toc-number"></span> <span class="toc-text">🍓🍓JDBC案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8D%A9%F0%9F%8D%A9JDBC%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number"></span> <span class="toc-text">🍩🍩JDBC工具类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%AE%F0%9F%8C%AESQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB"><span class="toc-number"></span> <span class="toc-text">🌮🌮SQL注入攻击</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/29/uml%E5%9B%BE/" title="uml图"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-pk6d9j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="uml图"/></a><div class="content"><a class="title" href="/2023/04/29/uml%E5%9B%BE/" title="uml图">uml图</a><time datetime="2023-04-28T18:56:40.000Z" title="发表于 2023-04-29 02:56:40">2023-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/28/hello-world/" title="Hello World"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-pk6d9j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2023/04/28/hello-world/" title="Hello World">Hello World</a><time datetime="2023-04-28T06:47:22.938Z" title="发表于 2023-04-28 14:47:22">2023-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day02/" title="Java设计模式-day02"><img src="https://view.lixingyong.com/images/2022/08/19/v2-b50a22dd3b9f2fa877b37058fa8c9607_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java设计模式-day02"/></a><div class="content"><a class="title" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day02/" title="Java设计模式-day02">Java设计模式-day02</a><time datetime="2023-04-22T16:34:44.000Z" title="发表于 2023-04-23 00:34:44">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day01/" title="Java设计模式-day01"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-8oz17j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java设计模式-day01"/></a><div class="content"><a class="title" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day01/" title="Java设计模式-day01">Java设计模式-day01</a><time datetime="2023-04-22T16:32:34.000Z" title="发表于 2023-04-23 00:32:34">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/10/2023%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFJava_%E5%A4%A7%E5%AD%A6B%E7%BB%84%E7%9C%9F%E9%A2%98/" title="2023年第十四届蓝桥杯Java_大学B组真题"><img src="https://view.lixingyong.com/images/2022/08/15/wallhaven-n6rp1l_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2023年第十四届蓝桥杯Java_大学B组真题"/></a><div class="content"><a class="title" href="/2023/04/10/2023%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFJava_%E5%A4%A7%E5%AD%A6B%E7%BB%84%E7%9C%9F%E9%A2%98/" title="2023年第十四届蓝桥杯Java_大学B组真题">2023年第十四届蓝桥杯Java_大学B组真题</a><time datetime="2023-04-10T08:51:38.000Z" title="发表于 2023-04-10 16:51:38">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By 屠一乐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">又来找我玩啦🥰</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【UML统一建模语言】2万字超详细学习笔记（1） | 屠一乐</title><meta name="author" content="屠一乐"><meta name="copyright" content="屠一乐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="(19条消息) UML笔记_半路出家的码农小王的博客-CSDN博客 uml结构 构造块：基本UML建模元素、关系和图 公共机制：达到特定目标的公共UML方法 构架：系统架构的UML视图 构建块事物：UML模型中最基本的构成元素，是具有代表性的成分的抽象 关系：把事物联系在一起，关系说明两个或多个事物时如何语义相关的 图：事物和关系的可视化表示，它们展现事物的集合，“讲述关于软件系统的故事”，是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【UML统一建模语言】2万字超详细学习笔记（1）">
+<meta property="og:url" content="http://example.com/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/index.html">
+<meta property="og:site_name" content="屠一乐">
+<meta property="og:description" content="(19条消息) UML笔记_半路出家的码农小王的博客-CSDN博客 uml结构 构造块：基本UML建模元素、关系和图 公共机制：达到特定目标的公共UML方法 构架：系统架构的UML视图 构建块事物：UML模型中最基本的构成元素，是具有代表性的成分的抽象 关系：把事物联系在一起，关系说明两个或多个事物时如何语义相关的 图：事物和关系的可视化表示，它们展现事物的集合，“讲述关于软件系统的故事”，是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://view.lixingyong.com/images/2022/08/19/v2-ef2e9cc677d9c75eda93b2ebd5ab2ba0_r.jpg">
+<meta property="article:published_time" content="2023-03-21T11:16:09.000Z">
+<meta property="article:modified_time" content="2023-05-01T03:15:29.000Z">
+<meta property="article:author" content="屠一乐">
+<meta property="article:tag" content="uml 学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://view.lixingyong.com/images/2022/08/19/v2-ef2e9cc677d9c75eda93b2ebd5ab2ba0_r.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?02d2a92c6bfa7e1fed03fcc69fcd843d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【UML统一建模语言】2万字超详细学习笔记（1）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-01 11:15:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="屠一乐" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://view.lixingyong.com/images/2022/08/19/v2-ef2e9cc677d9c75eda93b2ebd5ab2ba0_r.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="屠一乐"><img class="site-icon" src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg"/><span class="site-name">屠一乐</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【UML统一建模语言】2万字超详细学习笔记（1）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-21T11:16:09.000Z" title="发表于 2023-03-21 19:16:09">2023-03-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-01T03:15:29.000Z" title="更新于 2023-05-01 11:15:29">2023-05-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/uml%E5%8F%8A%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/">uml及设计思想</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">8.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>25分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【UML统一建模语言】2万字超详细学习笔记（1）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/f746262041/article/details/123221054">(19条消息) UML笔记_半路出家的码农小王的博客-CSDN博客</a></p>
+<h1 id="uml结构"><a href="#uml结构" class="headerlink" title="uml结构"></a>uml结构</h1><p><img src="https://img-blog.csdnimg.cn/img_convert/a099fb7dfc87b56499fdada09b8df830.png" alt="image-20230316085326203"></p>
+<p><strong>构造块：基本UML建模元素、关系和图</strong></p>
+<p><strong>公共机制：达到特定目标的公共UML方法</strong></p>
+<p><strong>构架：系统架构的UML视图</strong></p>
+<h2 id="构建块"><a href="#构建块" class="headerlink" title="构建块"></a>构建块</h2><p><strong>事物：UML模型中最基本的构成元素，是具有代表性的成分的抽象</strong></p>
+<p><strong>关系：把事物联系在一起，关系说明两个或多个事物时如何语义相关的</strong></p>
+<p>图：事物和关系的可视化表示，它们展现事物的集合，“讲述关于软件系统的故事”，是可视化系统将做什么（分析级图）或者系统如何做的方法（设计级图）</p>
+<p>（1）<strong>4个事物</strong>：结构、行为、分组、注释<br>（2）<strong>4个关系</strong>：依赖、关联、泛化、实现<br>（3）<strong>9种图</strong>：静态图(用例图、类图、对象图、组件图、部署图)；动态图(序列图、协作图、状态图、活动图)</p>
+<h3 id="结构事物"><a href="#结构事物" class="headerlink" title="结构事物"></a>结构事物</h3><p><strong>（1）类（Class）：类是指具有相同属性、方法、关系和语义的对象的集合。</strong></p>
+<p><strong>（2）接口（Interface）：接口是指类或组件所提供的服务（操作），描述了类或组件对外可见的动作。</strong></p>
+<p><strong>（3）协作（Collaboration）：协作描述合作完成某个特定任务的一组类及其关联的集合，用于对使用情形的实现建模。</strong></p>
+<p><strong>（4）用例（Use Case）：用例定义了参与者（在系统外部与系统交互的人或系统）和被考虑的系统之间的交互来实现的一个业务目标。</strong></p>
+<p><strong>（5）活动类（Active Class）：活动类的对象有一个或多个进程或线程。活动类和类很相象，只是它的对象代表的元素的行为和其他的元素是同时存在的。</strong></p>
+<p><strong>（6）组件（Component）：组件是物理的、可替换的部分，包含接口的集合，例如COM+</strong> <strong>、JavaBean等。</strong></p>
+<p><strong>（7）结点（Node）：结点是系统在运行时存在的物理元素，代表一个可计算的资源，通常占用一些内存和具有处理能力。</strong></p>
+<h3 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/897b6e9feb1b6db129f54b96f5f3b27f.png" alt="image-20230316090224762"></p>
+<p><strong>UML的关系是将UML的事物联系在一起的方式，UML中定义了四种关系：</strong></p>
+<p><strong>（1）依赖关系（Dependency）：两个事物之间的语义关系，其中一个事物发生变化会影响另一个事物的语义。</strong></p>
+<p><strong>（2）关联关系（Association）：描述一组对象之间连接的结构关系，如聚合关系就描述了整体和部分间的结构关系。</strong></p>
+<p><strong>（3）泛化关系（Generalization）：一般化和特殊化的关系。</strong></p>
+<p><strong>（4）实现关系（Realization） ：类之间的语义关系，一个类说明一份契约，另一个类保证实现该契约。</strong></p>
+<h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/050770696c2146d2165beb48599ee674.png" alt="image-20230316090344082"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f456755991965ee8415692427cad53f0.png" alt="image-20230316090506844"></p>
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>面向对象方法具有以下几个要点：</p>
+<p>（1）面向对象的软件系统是由对象组成的，软件中的任何元素都是对象，复杂的软件对象由比较简单的对象组合而成。</p>
+<p>（2）把所有对象都划分成各种对象类，每个对象类都定义了一组数据和一组方法，数据用于表示对象的静态属性，是对象的状态信息。</p>
+<p>（3）按照子类与父类的关系，把若干个对象类组成一个层次结构的系统。</p>
+<p>（4）对象彼此之间仅能通过传递消息进行联系</p>
+<h2 id="对象和实例"><a href="#对象和实例" class="headerlink" title="对象和实例"></a>对象和实例</h2><p>•<strong>对象(Object)</strong> <strong>有意义的一切事物都是对象</strong></p>
+<p>–<strong>它是系统用来描述客观事物的一个实体，是构成系统的一个基本单位。</strong></p>
+<p>–<strong>对象包括：属性（静态特征）和方法（动态特征）</strong></p>
+<p>–<strong>对象之间通过消息进行通信。</strong></p>
+<p>• <strong>对象不仅能表示具体的实体，也能表示抽象的规则、计划或事件。主要有如下的对象类型：</strong></p>
+<p>• <strong>（1）有形的实体：</strong>如汽车、书、计算机<strong>。</strong></p>
+<p>• <strong>（2）作用：</strong>如医生、教师、员工、学生<strong>。</strong></p>
+<p>• <strong>（3）事件：</strong>如飞行、事故、中断、开会等<strong>。</strong></p>
+<p>• **（4）性能说明：**如车厂对车辆的性能说明，往往要列出型号及各种性能指标等。</p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>•<strong>实例(Instance)</strong></p>
+<p>–<strong>它与对象的概念很类似，但其含义更广泛一些。</strong></p>
+<p>•类(Class)</p>
+<p>–它是具有相同属性和方法的一组对象的集合</p>
+<p>–为某类对象提供统一的描述</p>
+<p>–类是静态概念，对象是动态的</p>
+<p>–对象是类的实例</p>
+<h2 id="•封装-Encapsulation"><a href="#•封装-Encapsulation" class="headerlink" title="•封装(Encapsulation)"></a>•封装(Encapsulation)</h2><p>–就是把对象的属性和方法结合成一个独立的系统单位，并尽可能隐蔽对象的<strong>属性、方法和实现细节的过程。</strong></p>
+<p>–封装使对象具有2个部分：<strong>接口部分和实现部分</strong></p>
+<p>实现部分：保证内部信息是隐藏的</p>
+<p>接口部分：外界只能通过指定的接口与对象联系</p>
+<p>封装是实现数据隐藏的有效手段，可以保证数据结构的安全性。提高了系统的可维护性和可移植性</p>
+<h2 id="•继承-Inheritance"><a href="#•继承-Inheritance" class="headerlink" title="•继承(Inheritance)"></a>•继承(Inheritance)</h2><p>–它使子类可以继承父类的属性和方法</p>
+<p>–继承增加了软件复用的机会</p>
+<p>•单继承与多继承</p>
+<p>•<strong>单重继承：指的是一个子类只有一个父类；</strong></p>
+<p>• <strong>多重继承：指的是一个子类可以有多个父类。</strong></p>
+<p><strong>在继承中，需要明确这样两个概念，子类和父类。</strong></p>
+<p>​ <strong>子类：指的是通过继承创建的新类，称为“子类” 或者“派生类”。也可以增加自己的特殊属性和方法。</strong></p>
+<p>​ <strong>父类：指的是被继承的类称为“基类”、“ 父类” 或“ 超类”</strong></p>
+<h2 id="•多态-polymorphism"><a href="#•多态-polymorphism" class="headerlink" title="•多态(polymorphism)"></a>•多态(polymorphism)</h2><p>–在OO技术中，多态指使一个实体在不同上下文条件下具有不同意义或用法的能力</p>
+<p><strong>多态性是指类中同一函数名对应多个功能相似的不同函数，可以使用相同的调用方式来调用这些具有不同功能的同名函数，这些同名的函数可以是参数的个数或是类型不同，但是函数名相同，当进行调用的时候，根据所传的数据选定相应的函数，从而去执行不同的功能。</strong></p>
+<p>与多态有关的概念</p>
+<p>–继承</p>
+<p>–覆盖</p>
+<p>–动态绑定</p>
+<p>向上转型（指派）</p>
+<p>•覆盖（override）：在子类中增加或重新定义所继承的属性或方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">A</span>｛</span><br><span class="line">​       String name;</span><br><span class="line">​       <span class="keyword">public</span> String <span class="title function_">getValue</span><span class="params">()</span>&#123;</span><br><span class="line">​            <span class="keyword">return</span> “Value is:” + name;</span><br><span class="line">​       &#125;       </span><br><span class="line">   ｝</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_">A</span> &#123;</span><br><span class="line"></span><br><span class="line">​       String address;</span><br><span class="line">​       <span class="keyword">public</span> String <span class="title function_">getValue</span> <span class="params">()</span> &#123;</span><br><span class="line">​            <span class="keyword">return</span> “Value is:” + address;  </span><br><span class="line">​     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>重载（overload）：同一个类中有多个同名方法，但它们在操作数或操作数类型上有区别。系统根据实参引用不同方法。</strong></p>
+<h2 id="•消息-Message"><a href="#•消息-Message" class="headerlink" title="•消息(Message)"></a>•消息(Message)</h2><p>–是指向对象发出的服务请求</p>
+<p>–对象直接用消息的方式传递信息，而不是参数</p>
+<p>–<strong>消息是实现对象之间进行通信的一种机制，对于一个对象可以接收不同形式的多个消息，并产生不同的结果；相同形式的消息可以发送给不同的对象，并产生不同的结果；在发送消息的时候可以不考虑具体的接收者，对象可以对消息做出响应，也可以拒绝消息，也就是说不是必须要对消息做出响应。</strong></p>
+<p>•面向对象分析OOA</p>
+<p>–用面向对象方法分析问题域，建立基于对象、消息的业务模型，形成对客观世界和业务本身的正确认识。</p>
+<p>–生成业务对象的动、静态模型和抽象类 UML业务模型、用例图以及初步的交互图。</p>
+<p>•面向对象设计OOD</p>
+<p>–针对OOA给出的问题域模型，用面向对象方法设计出软件的基础架构（概要设计）和完整的类结构（详细设计），以完成业务功能。最后编码。</p>
+<p>–生成对象类的动、静态模型（解决域） UML类图、交互图（顺序图和协作图）、状态图、活动图以及实施阶段的组件图和部署图。</p>
+<h1 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h1><p><strong>1、用例图定义</strong><br>表示一个系统中用例与参与者关系之间的图，描述系统中相关用户和系统对不同用户提供的功能和服务(<strong>从用户视角描述</strong>，分析系统功能与行为)</p>
+<p><strong>2、用例图构成</strong><br>（1）参与者(Actor)<br>（2）系统边界(System scope)<br>（3）用例(Use case)<br>（4）关联(Association)</p>
+<p>此外，用例图<strong>还可以包括注解和约束</strong>，也可以<strong>使用包将图中的元素组合成模块</strong>。</p>
+<h2 id="参与者"><a href="#参与者" class="headerlink" title="参与者"></a>参与者</h2><p>概念</p>
+<ol>
+<li>参与者是与<strong>系统主体交互的外部实体的类元</strong>，描述了一个或一组与系统产生交互的<strong>外部用户或外部事物</strong>。</li>
+<li>参与者位于系统边界之外，而<strong>不是系统的一部分</strong>。</li>
+<li>参与者是<strong>从现实世界中抽象出来的一种形式</strong>，却不一定确切对应的现实中的某个特定对象</li>
+</ol>
+<p>处于用例的外部，可以是人或其他外界系统</p>
+<p><strong>参与者确定方法</strong></p>
+<ul>
+<li>使用系统主要功能的人(主要角色)</li>
+<li>借助系统完成日常工作的人</li>
+<li>维护、管理系统的人(次要角色)</li>
+<li>硬件设备、其他系统交互、对系统结果感兴趣的人或事</li>
+</ul>
+<h2 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h2><p>用例的概念<br>用例是类元提供的一个内聚的功能单元，表明系统与一个或多个参与者之间信息交换的顺序，也表明了系统执行的动作。</p>
+<p>简单来说，用例就是某一个参与者在系统中做某件事从开始到结束的一系列活动的集合，以及结束时应该返回的可观测、有意义的结果，其中也包含可能的各种分支情况。</p>
+<p>用例与用例图被广泛使用于系统的需求建模阶段，并在系统的整个生命周期中被不断细化。</p>
+<h2 id="关系-1"><a href="#关系-1" class="headerlink" title="关系"></a>关系</h2><p>•<strong>包含（include）</strong></p>
+<p>包含指的是一个用例（基用例）可以包含其他用例（包含用例）具有的行为，其中包含用例中定义的行为将被插入基用例定义的行为中。</p>
+<p>包含的两个基本约束：</p>
+<p>1.基用例可以看到包含用例，并需要依赖于包含用例的执行结果，但是它对包含用例的内部结构没有了解；<br>2.基用例一定会要求包含用例执行。<br>包含表示为一个虚线箭头附加上《include》的构造型，箭头从基用例指向包含用例。<br><img src="https://img-blog.csdnimg.cn/img_convert/7426a65fe0fac4adc3262da7a2c66bed.png" alt="img"></p>
+<p>•<strong>扩展（extend）</strong></p>
+<p>扩展指的是一个用例（扩展用例）对另一个用例（基用例）<strong>行为的增强</strong>。</p>
+<p>扩展使用一个附加了《enxtend》构造型的虚线箭头表示，<strong>箭头指向基用例</strong>。</p>
+<p>注意：<strong>扩展与包含的箭头方向是相反的</strong>，这表明扩展取决于扩展用例而非基用例，扩展用例决定扩展的执行时机，<strong>基用例对此一无所知</strong>。扩展用例的使用包括四个部分：<img src="https://img-blog.csdnimg.cn/img_convert/f96db3143cd68e6f7ff9c5deb5f38a57.png" alt="img"></p>
+<ol>
+<li>基用例：需要被扩展的用例，“注册”用例。</li>
+<li>扩展用例：提供所添加的行为序列的用例。</li>
+<li>扩展关系：使用虚线箭头表示，<strong>箭头指向基用例</strong>。</li>
+<li>扩展点：基用例中的一个或多个位置，表示在该位置会根据某条件来决定是否要中断基用例的执行从而执行扩展用例中的片段。</li>
+</ol>
+<p>•<strong>泛化（generalization）</strong></p>
+<p>与参与者的泛化关系相似，<strong>用例的泛化关系将特化的用例与一般化的用例联系起来</strong>。子用例<strong>继承了父用例的属性、操作和行为序列</strong>，并且<strong>可以增加属于自己的附加属性和操作</strong>。父用例同样可以定义为抽象用例。</p>
+<p>用例之间的泛化关系表示为一根实线三角箭头，箭头指向父用例一方。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1c85004c2ee043e8afafa7aa1572a0c5.png" alt="img"></p>
+<p>包含、拓展的区别<br><img src="https://img-blog.csdnimg.cn/img_convert/91d84d488a522f594f044711bba54948.png" alt="image-20230316123651754"></p>
+<h2 id="用例描述与文档"><a href="#用例描述与文档" class="headerlink" title="用例描述与文档"></a>用例描述与文档</h2><p>用例描述概述<br>一个完整的用例模型应该不仅仅包括用例图部分，还要有完整的用例描述部分。</p>
+<p>一般的用例描述主要包括以下几部分内容：</p>
+<ol>
+<li><p>用例名称：描述用例的意图或实现的目标，一般为动词或动宾短语。</p>
+</li>
+<li><p>用例编号：<strong>用例的唯一标识符</strong>，在其他位置可以使用该标识符来引用用例。</p>
+</li>
+<li><p>参与者：描述用例的参与者，包括主要参与者和其他参与者。</p>
+</li>
+<li><p>用例描述：对用例的一段简单的概括描述。</p>
+</li>
+<li><p>触发器：触发用例执行的一个事件。</p>
+</li>
+<li><p>前置条件：用例执行前系统状态的约束条件。</p>
+</li>
+<li><p>基本事件流（典型过程）：用例的常规活动序列，包括参与者发起的动作与系统执行的响应活动。</p>
+</li>
+<li><p>扩展事件流（替代过程）：记录如果典型过程出现异常或变化时的用例行为，即典型过程以外的其他活动步骤。</p>
+</li>
+<li><p>结论：描述用例何时结束。</p>
+</li>
+<li><p>后置条件：用例执行后系统状态的约束条件。</p>
+</li>
+<li><p>补充约束：用例实现时需要考虑的业务规则、实现约束等信息。</p>
+</li>
+</ol>
+<p>·前置条件与后置条件</p>
+<p>前置条件指的是用例执行前系统和参与者应处于的状态。前置条件是用例的入口限制，它便于我们在进行系统分析及设计的时候注意到，在何时何地才可以合法地触发这个事件。</p>
+<p>后置条件是用例执行完毕后系统处于的状态。后置条件是对用例执行完毕后系统状况的总结，用来确保用户理解用例执行完毕后的结果，并非其他用例的触发器。</p>
+<p>前置条件与后置条件分别是用例在开始和结束时的必要条件。</p>
+<p>·事件流</p>
+<p>事件流是对用例在使用场景下的交互动作的抽象，应该包括用例何时以及怎样开始和结束，用例何时与参与者交互，该行为的基本流和可选择的流。</p>
+<p>基本事件流：描述的是用例中最核心的事件流，是用例大部分时间所进行的场景。</p>
+<p>扩展事件流：描述的是用例处理过程中的一些分支或异常情况。</p>
+<p>·补充约束</p>
+<p>补充约束用来描述用例在系统功能之外的内容，例如非功能需求、业务规则等等。</p>
+<p>数据需求：与该用例相关的一些数据项的说明。</p>
+<p>业务规则：与业务相关的逻辑和操作规则。</p>
+<p>非功能性需求：例如性能、支持的并发量等。</p>
+<p>设计约束：是从多个角度对用例或系统的约定。</p>
+<p>·用例文档实践</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/0c22e768c6a85bf4e60fded292e13386.png" alt="image-20230316124503109"></p>
+<p>·用例图使用要点</p>
+<p>构建结构良好的用例。用例图中应该只包含对系统而言必不可少的用例与相关的参与者。<br>用例的名称不应该简化到使读者误解其主要语义的程度。<br>摆放元素时应尽量减少连接线的交叉，以提供更好的可视化效果。<br>组织元素时应使在语义上接近的用例和参与者在图的位置上也同样接近，便于读者理解用例图。<br>可以使用注解或给元素添加颜色等方式突出图中相对重要的内容。<br>用例图中不应该有太多的关系种类。</p>
+<p>·用例图建模技术</p>
+<p>对系统的语境建模<br>识别系统边界。<br>识别参与者。<br>如果需要，将具有相同特征的参与者使用泛化关系加以组织。<br>如果需要，对某些参与者应用一个构造型以便加深理解。<br>将参与者应用到用例图中，并描述参与者与用例间的通信路径。</p>
+<p>对系统的需求建模<br>识别参与者。<br>对于某个参与者，考虑其期望系统提供的行为或与系统的交互。<br>将行为提炼成用例。<br>完善其他用例。分解用例中的公共行为与扩展行为，放入新的用例中以供其他用例使用。<br>创建用例图。<br>如果需要，在用例图中添加一些注解或约束来陈述系统的非功能需求。</p>
+<h2 id="案例——学生选课系统"><a href="#案例——学生选课系统" class="headerlink" title="案例——学生选课系统"></a>案例——学生选课系统</h2><p>某学校的网上选课系统主要包括如下功能：</p>
+<p>管理员通过系统管理界面进入，建立本学期要开的各种课程，将课程信息保存在数据库中并可以对课程进行改动和删除。</p>
+<p>学生通过客户机浏览器根据学号和密码进入选课界面，在这里学生可以进行三种操作：查询已选课程，选课以及付费。</p>
+<p>同样，通过业务层。这些操作结果存入数据库中。</p>
+<p>步骤：</p>
+<p>确定系统边界<br>确定参与者（名词）<br>确定用例（动宾结构）<br>确定关系（联系）<br>参与者：学生、教务人员、数据库</p>
+<p>用例：选课、查询、支付课时费用、登陆、修改课程、添加课程、删除课程</p>
+<p>关系：关联关系、泛化关系<img src="https://img-blog.csdnimg.cn/img_convert/6316743db08fb1e26ce63288aa2dfdf5.png" alt="img"></p>
+<h1 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h1><p>类图的定义：是显示一组<strong>类、接口、协作以及它们之间关系</strong>的图。</p>
+<p>类图主要包含<strong>7种元素</strong>：类、接口、协作、依赖关系、泛化关系、实现关系、关联关系。</p>
+<p>类图：包、子系统，用来把模型元素聚集成更大的组块。</p>
+<p>类图：约束、注解</p>
+<p>•类图用于建立类、类的内部结构以及类与类相互之间的各种关系模型。类图由类、类之间的关系和约束组成。</p>
+<p>•<strong>类图&#x3D;类+关系+约束</strong></p>
+<p>•类图是UML建模中最基本和最重要的一种图。</p>
+<p>•在程序设计的不同阶段，类图的作用也不相同</p>
+<p>•分析阶段：主要用于描述概念类</p>
+<p>•设计阶段：主要用于描述类的外部特征</p>
+<p>•实现阶段：主要用于描述类的内部实现</p>
+<h2 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h2><ol>
+<li>类是一组拥有相同的属性、操作、方法、关系和行为的对象地描述符。</li>
+<li>类定义了一组有着状态与行为的对象。类的状态由属性和关联来描述，个体行为由操作来描述，对象的生命周期则由附加给类的状态机来描述。</li>
+<li>在UML中，类表达成一个有三个分隔区的矩形。其中顶端显示类名，中间显示类的属性，尾端显示类的操作。<img src="https://img-blog.csdnimg.cn/img_convert/e19f60284fecb46d2ab66b2914594334.png" alt="img"></li>
+</ol>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>•属性：描述该类的对象所具有的特征</p>
+<p>•属性的格式：</p>
+<p>•<code>[可见性] 属性名 [:类型][‘[’多重性[次序]’]’][=缺省值][&#123;特性&#125;]</code></p>
+<p>•可见性：表示一个方法或属性是否能被另一个方法访问</p>
+<p>•多重性：属性值个数格式，多重性::&#x3D;[低…高]**</p>
+<p>•次序：属性值顺序</p>
+<p>•特性：对该属性性质的一个约束说明，如{只读}</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/86a1474658a2f5f566428f2cb81273d5.png" alt="image-20230317102945567"></p>
+<p><strong>公共</strong>：类的<strong>属性和方法对其他模型元素都是可访问的</strong>。公共的可见性应该尽量少用，公共就意味着将类的属性和方法暴露给外部，这与面向对象的封装原则是相矛盾的。</p>
+<p><strong>保护</strong>：属性和方法只对类本身、<strong>它的子类或友元是可看见的</strong>。保护可见性是<strong>默认</strong>的可见性。它保护属性和方法不被外部类使用。</p>
+<p><strong>私有</strong>：<strong>属性和方法只对类本身和类的友元是可见的</strong>。私有的可见性可以用在不希望子类继承属性和方法的情况下。</p>
+<p><strong>子类无法继承和访问父类的私有属性和实现属性</strong></p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><ol>
+<li>接口是一个<strong>被命名的操作集合</strong>，用于描述类或组件的一个服务。</li>
+<li>接口<strong>不包含属性与方法实现</strong>，但可以有一些操作。接口的所有内容都是公有的。</li>
+<li>接口代表了一份契约，<strong>实现该接口的类元必须履行它</strong>。</li>
+<li>在UML中，接口由一个带名称的小圆圈表示；<strong>也可以表示为带有&lt;&gt;构造型的类</strong></li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d1b631ffc3aadcd133c39954831aad2a.png" alt="img"><img src="https://img-blog.csdnimg.cn/img_convert/e64e81b6d94151fec840c70375b6051c.png" alt="img"></p>
+<h2 id="类图中的关系"><a href="#类图中的关系" class="headerlink" title="类图中的关系"></a>类图中的关系</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/1f030a639d064d218b88a616a0b10282.png" alt="img"></p>
+<h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p>关联的实例被称为链，每个链由一组有序或无序的对象组成。<br>关联关系靠近被关联元素的部分称为关联端，关联的大部分描述都包含在一组关联端的列表里，每个端用来描述关联中类的对象的参与<br>二元关联、自关联、N元关联。</p>
+<p>•关联的种类</p>
+<p>–一般关联：有二元关联和N元关联，关联语义较弱</p>
+<p>–<strong>聚合</strong>：关联语义较强:has-a关系，表示整体和部分的关系，<strong>个体可以属于多个整体</strong>。（聚合是特殊的关联）</p>
+<p>–<strong>组合</strong>：关联语义强:contains-a关系,整体和部分的关系，个体唯一属于一个整体。部分和整体具有相同的生命周期。</p>
+<p>组合关系中的“整体”控制着“部分”的生存期。组合是一种特殊的聚合关系，又称强聚合。</p>
+<p>–自身关联:<strong>一个类与其自身存在一种关联关系，自关联关系意味着该类的某个实例与该类的其他实例之间存在关联关系。</strong></p>
+<p>派生关联:<strong>一个关联是由另外的关联推导出来的，派生关联前面加斜杠表示。生成代码时，派生关联不产生相应代码</strong></p>
+<p>•<strong>受限关联</strong></p>
+<p>–在关联端紧靠源类图标处可以有限定符（qualifier），带有限定符的关联称为受限关联或限定关联。</p>
+<p>–限定符的作用就是在给定关联一端的一个对象和限定符之后，可以唯一确定另一端的一个对象或对象集。</p>
+<p>受限关联用于一对多或多对多的关联。将目标类的多重性从“多”降为“一”</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b7c787423ae061e7cc505edb63726afd.png" alt="img"></p>
+<p>注意要点</p>
+<p>关联名称：放在关联路径的旁边，但远离关联端。</p>
+<p>角色：放在靠近关联端的部分，表示该关联端连接的类在这一关联关系中担任的角色。角色名上也可使用可见性修饰符号。</p>
+<p>多重性：放在靠近关联端的部分，表示在关联关系中源端的一个对象可以与目标类的多少个对象之间有关联。</p>
+<p>导航性：一个布尔值，用来说明运行时刻是否可能穿越一个关联。</p>
+<p>限定符：是二元关联上的属性组成的列表的插槽，其中的属性值用来从整个对象集合里选择一个唯一的关联对象或者关联对象的集合。</p>
+<p>约束：关联间的约束关系。</p>
+<h4 id="现实例子"><a href="#现实例子" class="headerlink" title="现实例子"></a>现实例子</h4><p>比如客户和订单，每个订单对应特定的客户，每个客户对应一些特定的订单；再例如公司和员工，每个公司对应一些特定的员工，每个员工对应一特定的公司。（表示有关联，也可以表示多重性）</p>
+<p><strong>派生关联</strong>：属于一种派生元素。它不增加语义信息，只是一种可以由<strong>两个或两个以上的基础关联推算出来的虚拟关联。</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9696b64e2aaaf7ff4283b6e8b73bd937.png" alt="img"></p>
+<p>两种特殊的关联关系：聚合关系与组合关系</p>
+<p>1.聚合关系：描述“整体-部分”的关联关系</p>
+<p>聚合关系没有改变整体与部分之间整个关联的导航含义，也与整体和部分的生命周期无关。（部分与整体相互独立）</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a39bf31a4c5670e8a4a2f62712abe26a.png" alt="img"></p>
+<p>2.组合关系：描述“整体-部分”的关联关系</p>
+<p>组合关系中的部分要完全依赖于整体。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/eb3811ef8dfb976174eac9c6e44a1cd5.png" alt="img"></p>
+<p>关联与聚合的区别</p>
+<blockquote>
+<p>关联关系所涉及的两个对象是处在同一个层次上的。比如人和自行车就是一种关联关系，而不是聚合关系，因为人不是由自行车组成的。聚合关系涉及的两个对象处于不平等的层次上，一个代表整体，一个代表部分。比如:电脑和它的显示器、键盘、主板以及内存就是聚集关系，因为主板是电脑的组成部分。<br>对于具有聚集关系（尤其是强聚集关系）的两个对象，整体对象会制约它的组成对象的生命周期。部分类的对象不能单独存在，它的生命周期依赖于整体类的对象的生命周期，当整体消失，部分也就随之消失。比如张三的电脑被偷了，那么电脑的所有组件也不存在了，除非张三事先把一些电脑的组件（比如硬盘和内存）拆了下来。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/fe7fdb79d9689890a5f30365c5375bfe.png" alt="img"></p>
+<p>聚合与组合的区别</p>
+<p>聚合关系：涉及的两个对象处于不平等的层次上，一个代表整体，一个代表部分。比如:电脑和它的显示器、键盘、主板以及内存就是聚集关系，因为主板是电脑的组成部分。</p>
+<p>组合关系：代表整体的对象负责代表部分对象的生命周期。公司不存在，部门也没有意义了。再例如：人和五脏六腑、四肢的关系。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/76294cfb7f78822be755dc11ee5760ee.png" alt="img"></p>
+<h3 id="泛化关系"><a href="#泛化关系" class="headerlink" title="泛化关系"></a>泛化关系</h3><p>泛化关系定义为一个较普通的元素与一个较特殊的元素之间的类元关系。其中描述一般的元素称为父，描述特殊的元素称为子。（子类是父类的继承，则父类就是子类的泛化。）</p>
+<p>通过泛化对应的继承机制使子类共享父类的属性和操作，小了模型的规模，同时也防止了模型的更新所导致的定义不一致的意外。</p>
+<p>泛化关系的特征：</p>
+<ol>
+<li><p>传递性：一个类子类的子类同样继承了这个类的特性。在父方向上经过了一个或几个泛化的元素被称为祖先，在子方向上则被称为后代。</p>
+</li>
+<li><p>反对称性：泛化关系不能成环，即一个类不可能是自己的祖先和自己的后代。</p>
+</li>
+</ol>
+<p>泛化关系的两种情况</p>
+<ol>
+<li><p>单继承：每个类最多能拥有一个父类。编程语言：C#、Java等</p>
+</li>
+<li><p>多重继承：子类可以有多个父类并继承了所有父类的结构、行为和约束。编程语言：C++等</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/337a31a1a413b3a605d0bd3e2dee93aa.png" alt="img"></p>
+<h3 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h3><p>依赖关系表示的是两个元素之间语义上的连接关系。对于两个元素X和Y，如果元素X的变化会引起对另一个元素Y的变化，则称元素Y依赖于X。其中，X被称为提供者，Y被称为客户。</p>
+<p>现实例子：比如说你要去拧螺丝，你是不是要借助(也就是依赖)螺丝刀(Screwdriver)来帮助你完成拧螺丝(screw)的工作。</p>
+<p>对于类图而言，主要有以下需要使用依赖的情况：</p>
+<ol>
+<li><p>客户类向提供者类发送消息。</p>
+</li>
+<li><p>提供者类是客户类的属性类型。</p>
+</li>
+<li><p>提供者类是客户类操作的参数类型。</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f4090831f4a577cd0681b6545170930b.png" alt="img"></p>
+<h3 id="实现关系"><a href="#实现关系" class="headerlink" title="实现关系"></a>实现关系</h3><p>实现关系用来表示规格说明与实现之间的关系。在类图中，实现关系主要用于接口与实现该接口的类之间。</p>
+<p>一个类可以实现多个接口，一个接口也可以被多个类实现。</p>
+<p>实现关系的两种表示法：</p>
+<ol>
+<li><p>当接口元素以带构造型的类的方式表示时，用虚线三角形箭头表示。</p>
+</li>
+<li><p>当接口元素以小圆圈方式表示时，用实线表示。</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/e370a5f91d735c21a2d5dc67734a4e6e.png" alt="img"></p>
+<p>综合例子<img src="https://img-blog.csdnimg.cn/img_convert/4999442655abfe20d5309d30cbb198c7.png" alt="img"></p>
+<h1 id="对象图"><a href="#对象图" class="headerlink" title="对象图"></a>对象图</h1><p>对象图概述：对象图显示了某一时刻的一组对象及它们之间的关系。</p>
+<p>对象图可以看做是类图的实例，用来表达各个对象在某一时刻的状态。</p>
+<p>建模元素主要有对象和链，对象是类的实例，链是类之间的关联关系的实例。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c5980f7fe04a6bc9c45bd0c3c5671f55.png" alt="img"></p>
+<p>对象图的组成元素——对象</p>
+<p>对象是类的实例，是一个封装了状态和行为的具有良好边界和标识符的离散实体。对象通过其类型、名称和状态区别于其他对象而存在。</p>
+<p>对象名：在矩形框的顶端显示。</p>
+<p>类型：具体的类目</p>
+<p>状态：由对象的所有属性以及运行时的当前值组成。</p>
+<p>表示法：在对象名后跟一个冒号加上类型名，并且使用下划线与类进行区分。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f2f04b8ec441b485b5964bd9d7f1e3f8.png" alt="img"><img src="https://img-blog.csdnimg.cn/img_convert/a8afda04357ebdda2d8cc82b4da528da.png" alt="img"></p>
+<p>对象图的组成元素——链</p>
+<p>链是关联关系的实例，是两个或多个对象之间的独立连接。因此，链在对象图中的作用就十分类似于关联关系在类图中的作用。</p>
+<p>在UML中，链同样使用一根实线段来表示。</p>
+<p>链主要用来导航。链一端的一个对象可以得到另一位置上的一个或一组对象，然后向其发送消息。链的每一端也可以显示一个角色名称，但不能显示多重性。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/2b2b624e22c0610b666650adde8a8548.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c7489d16dcad8e99dbb445b10642819c.png" alt="img"></p>
+<p>对象图的建模技术：</p>
+<p>为对象结构建模识别建模机制。建模机制被描述为系统的某些功能或行为，经常会被耦合为用例，由一组类、接口和其他事物的交互产生。可以创建协作来描述机制。</p>
+<p>识别参与的类和接口等元素，以及这些元素之间的关系。</p>
+<p>识别并选择对象。考虑这个机制的脚本在某时刻被冻结时的情况，识别并选择出各个对象。</p>
+<p>按需要显示每个对象的状态。</p>
+<p>识别并显示出对象之间的链，即对象的类目之间关联的实例。</p>
+<p>对象图的建模步骤:</p>
+<p>1、确定对象及对象状态（从类图中来）</p>
+<p>2、建立链（从类图中来）</p>
+<p>对象图使用要点:</p>
+<p>1）注重于表达系统静态设计视图或静态交互视图的一个方面。</p>
+<p>2）表示由一个交互图描绘的动态场景的一个画面。</p>
+<p>3）只包含对理解该方面不可缺少的那些元素。</p>
+<p>4）提供与它的抽象层次相一致的细节，应该只显露出对理解是不可缺少的那些属性值和其他修饰。</p>
+<h1 id="包图"><a href="#包图" class="headerlink" title="包图"></a>包图</h1><p>包图的基本概念: 包图是用来描述模型中的包和所包含元素的组织方式的图，是维护和控制系统总体结构的重要内容。</p>
+<p>包图能够组织许多UML中的元素，不过其最常用的用途是<strong>用来组织用例图和类图</strong>。</p>
+<p>包图中包含包元素以及包之间的关系。与其他图类似，包图中可以创建注解和约束。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/097d92ed0135d7c251380d9ba253bff5.png" alt="img"></p>
+<p>元素：包中可以容纳各种高级的模型元素，如类和类的关系、状态机、用例图、交互、协作等，甚至是一个完整的UML图。包中还可以含有包，这被称为包的嵌套。</p>
+<p>包元素的可见性：</p>
+<p>公有（+）：只要当前包被引入，包内的公共元素即对引入者可见。</p>
+<p>保护（#）：仅对当前包的子包可见。</p>
+<p>私有（-）：仅对该包可见，外部无法访问。</p>
+<p>包的构造型：可以使用构造型来描述包的种类。UML预定义了一些构造型，用户也可自行定义新的构造型。</p>
+<p>高内聚，低耦合：</p>
+<p>在外部观察包时，可以将内部元素视作一个整体，方便将多个元素一同处理。</p>
+<p>包内部的元素应该保证有相似、相同的语义，或者其元素有同时更改和变化的性质。</p>
+<p>注：在实际应用中，包对包含的元素的作用相当于C++和C#中命名空间的概念或Java中的包概念。和这些概念不同的是，UML包中的内容不限于类和接口，包中的元素种类要丰富的多。</p>
+<p>元素的分包原则：</p>
+<p>1）元素不能“狡兔三窟”：树形结构的一个节点不能同时拥有两个父节点，一个元素也不允许在两个包中重复出现。</p>
+<p>2）相同包内元素不能重名</p>
+<p>3）包内元素要紧密联系：分在同一个包中的元素应该具有某些相同的性质，即包的高内聚性。</p>
+<p>4）包与包尽可能保持独立：包和包之间需要尽可能减少耦合度，要求包内元素与外部元素有尽可能少的依赖关系。</p>
+<p>包的依赖关系：</p>
+<p>包之间的依赖关系实际上是从一个更高的层次来描述包内某些元素之间的依赖关系。也就是说，如果不同包中任何元素之间存在着一个依赖，则两个包之间就存在着依赖关系。</p>
+<p>包之间的依赖关系首先需要包中的某些元素具有某种外部可见性，即可以被包外部的元素所引用。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d324f46102a85524e309467db81fb780.png" alt="img"></p>
+<p>容易出现的问题：循环依赖</p>
+<p>循环依赖的出现是令人困惑、也是非常容易产生错误的。尤其是当依赖关系表示包的引入时，循环依赖会导致将模型转化成代码后因为包之间互相引入而出现错误。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/7ba8cef78c34b9b29f807acd8d600321.png" alt="img"></p>
+<p>解决方案：重新分包，引入第三个包，重新建立依赖关系。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9a0a380fea0d2c6ad2530f74754456c3.png" alt="img"></p>
+<p>包图的建模技术</p>
+<p>对成组元素建模</p>
+<ol>
+<li>浏览模型中的元素，找出概念或语义上接近的元素分组。</li>
+<li>将分好组的元素组织在一个包里，同时考虑包的嵌套。</li>
+<li>对每一个包，区分哪些元素需要在包外被访问，进而确定包内元素的可见性。这一步骤类似于类的封装过程：没有必要对外开放的元素一定要预先标注为私有，随后逐一检查，如果必须开放再考虑开放可见性为受保护或公有。若设计完成时发现部分公有元素未被使用，还应该将这些元素重新置为私有元素。</li>
+<li>使用引入依赖显式地在包之间建立关系。</li>
+</ol>
+<p>对体系结构视图建模</p>
+<p>我们已经知道，视图是对系统的组织和结构的某个方面的投影，表达了对系统某个方面的关注。理论上，我们完全可以利用包元素来创建自己的体系结构视图。实际上，现在绝大部分的UML建模工具的视图结构也是使用包元素来划分其体系结构视图的。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">屠一乐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/">http://example.com/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">屠一乐</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/uml-%E5%AD%A6%E4%B9%A0/">uml 学习</a></div><div class="post_share"><div class="social-share" data-image="https://view.lixingyong.com/images/2022/08/19/v2-ef2e9cc677d9c75eda93b2ebd5ab2ba0_r.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://view.lixingyong.com/images/2023/04/28/mm_facetoface_collect_qrcode_1682691038620.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://view.lixingyong.com/images/2023/04/28/1682691081397.jpeg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="要请我喝冰阔落嘛"/></a><div class="post-qr-code-desc">要请我喝冰阔落嘛</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E6%80%9D%E6%83%B3%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/" title="【UML统一建模思想】2万字超详细学习笔记（2）"><img class="cover" src="https://view.lixingyong.com/images/2022/08/12/wallhaven-k7oy57_1920x1080.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【UML统一建模思想】2万字超详细学习笔记（2）</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/19/%E3%80%90Mysbatis%E3%80%91%E8%B6%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" title="【Mysbatis】超详细教程"><img class="cover" src="https://view.lixingyong.com/images/2022/08/12/wallhaven-j3m8y5_1920x1080.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【Mysbatis】超详细教程</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">屠一乐</div><div class="author-info__description">屠一乐的个人博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/tuyile-icu"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/tuyile-icu" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="mailto:3189248615@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这里有很多好康的学习资料哦🤣🤣</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#uml%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">uml结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%9D%97"><span class="toc-number">1.1.</span> <span class="toc-text">构建块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BA%8B%E7%89%A9"><span class="toc-number">1.1.1.</span> <span class="toc-text">结构事物</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.2.</span> <span class="toc-text">关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE"><span class="toc-number">1.1.3.</span> <span class="toc-text">图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.</span> <span class="toc-text">面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.1.</span> <span class="toc-text">对象和实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-number">2.2.</span> <span class="toc-text">类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%A2%E5%B0%81%E8%A3%85-Encapsulation"><span class="toc-number">2.3.</span> <span class="toc-text">•封装(Encapsulation)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%A2%E7%BB%A7%E6%89%BF-Inheritance"><span class="toc-number">2.4.</span> <span class="toc-text">•继承(Inheritance)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%A2%E5%A4%9A%E6%80%81-polymorphism"><span class="toc-number">2.5.</span> <span class="toc-text">•多态(polymorphism)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%A2%E6%B6%88%E6%81%AF-Message"><span class="toc-number">2.6.</span> <span class="toc-text">•消息(Message)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">用例图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E4%B8%8E%E8%80%85"><span class="toc-number">3.1.</span> <span class="toc-text">参与者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B"><span class="toc-number">3.2.</span> <span class="toc-text">用例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB-1"><span class="toc-number">3.3.</span> <span class="toc-text">关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E6%8F%8F%E8%BF%B0%E4%B8%8E%E6%96%87%E6%A1%A3"><span class="toc-number">3.4.</span> <span class="toc-text">用例描述与文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E2%80%94%E2%80%94%E5%AD%A6%E7%94%9F%E9%80%89%E8%AF%BE%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.5.</span> <span class="toc-text">案例——学生选课系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE"><span class="toc-number">4.</span> <span class="toc-text">类图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB-1"><span class="toc-number">4.1.</span> <span class="toc-text">类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.1.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">4.2.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">4.3.</span> <span class="toc-text">类图中的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB"><span class="toc-number">4.3.1.</span> <span class="toc-text">关联关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%B0%E5%AE%9E%E4%BE%8B%E5%AD%90"><span class="toc-number">4.3.1.1.</span> <span class="toc-text">现实例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%8C%96%E5%85%B3%E7%B3%BB"><span class="toc-number">4.3.2.</span> <span class="toc-text">泛化关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB"><span class="toc-number">4.3.3.</span> <span class="toc-text">依赖关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB"><span class="toc-number">4.3.4.</span> <span class="toc-text">实现关系</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%9B%BE"><span class="toc-number">5.</span> <span class="toc-text">对象图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%85%E5%9B%BE"><span class="toc-number">6.</span> <span class="toc-text">包图</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/29/uml%E5%9B%BE/" title="uml图"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-pk6d9j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="uml图"/></a><div class="content"><a class="title" href="/2023/04/29/uml%E5%9B%BE/" title="uml图">uml图</a><time datetime="2023-04-28T18:56:40.000Z" title="发表于 2023-04-29 02:56:40">2023-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/28/hello-world/" title="Hello World"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-pk6d9j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2023/04/28/hello-world/" title="Hello World">Hello World</a><time datetime="2023-04-28T06:47:22.938Z" title="发表于 2023-04-28 14:47:22">2023-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day02/" title="Java设计模式-day02"><img src="https://view.lixingyong.com/images/2022/08/19/v2-b50a22dd3b9f2fa877b37058fa8c9607_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java设计模式-day02"/></a><div class="content"><a class="title" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day02/" title="Java设计模式-day02">Java设计模式-day02</a><time datetime="2023-04-22T16:34:44.000Z" title="发表于 2023-04-23 00:34:44">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day01/" title="Java设计模式-day01"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-8oz17j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java设计模式-day01"/></a><div class="content"><a class="title" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day01/" title="Java设计模式-day01">Java设计模式-day01</a><time datetime="2023-04-22T16:32:34.000Z" title="发表于 2023-04-23 00:32:34">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/10/2023%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFJava_%E5%A4%A7%E5%AD%A6B%E7%BB%84%E7%9C%9F%E9%A2%98/" title="2023年第十四届蓝桥杯Java_大学B组真题"><img src="https://view.lixingyong.com/images/2022/08/15/wallhaven-n6rp1l_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2023年第十四届蓝桥杯Java_大学B组真题"/></a><div class="content"><a class="title" href="/2023/04/10/2023%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFJava_%E5%A4%A7%E5%AD%A6B%E7%BB%84%E7%9C%9F%E9%A2%98/" title="2023年第十四届蓝桥杯Java_大学B组真题">2023年第十四届蓝桥杯Java_大学B组真题</a><time datetime="2023-04-10T08:51:38.000Z" title="发表于 2023-04-10 16:51:38">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By 屠一乐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">又来找我玩啦🥰</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

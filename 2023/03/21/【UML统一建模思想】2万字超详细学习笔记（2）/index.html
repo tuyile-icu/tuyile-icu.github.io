@@ -1,0 +1,733 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【UML统一建模思想】2万字超详细学习笔记（2） | 屠一乐</title><meta name="author" content="屠一乐"><meta name="copyright" content="屠一乐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="🌈博客主页：屠一乐的博客📅 发文时间：2023.3.21🎈 一定存在只有你才能做成的事🌹 博主水平有限，如有错误，欢迎指正欢迎各位👍收藏💎评论✉  UML 通信图 时序图 状态图 活动图 组件图 部署图  通信图通信图的概念：通信图（协作图）是表现对象交互关系的图，它展现了多个对象在协同工作达成共同目标的过程中互相通信的情况，通过对象和对象之间的链、发送的消息来显示参与交互的对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【UML统一建模思想】2万字超详细学习笔记（2）">
+<meta property="og:url" content="http://example.com/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E6%80%9D%E6%83%B3%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/index.html">
+<meta property="og:site_name" content="屠一乐">
+<meta property="og:description" content="🌈博客主页：屠一乐的博客📅 发文时间：2023.3.21🎈 一定存在只有你才能做成的事🌹 博主水平有限，如有错误，欢迎指正欢迎各位👍收藏💎评论✉  UML 通信图 时序图 状态图 活动图 组件图 部署图  通信图通信图的概念：通信图（协作图）是表现对象交互关系的图，它展现了多个对象在协同工作达成共同目标的过程中互相通信的情况，通过对象和对象之间的链、发送的消息来显示参与交互的对象">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://view.lixingyong.com/images/2022/08/12/wallhaven-k7oy57_1920x1080.png">
+<meta property="article:published_time" content="2023-03-21T11:18:50.000Z">
+<meta property="article:modified_time" content="2023-05-01T03:15:29.000Z">
+<meta property="article:author" content="屠一乐">
+<meta property="article:tag" content="uml 学习 软件工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://view.lixingyong.com/images/2022/08/12/wallhaven-k7oy57_1920x1080.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E6%80%9D%E6%83%B3%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?02d2a92c6bfa7e1fed03fcc69fcd843d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【UML统一建模思想】2万字超详细学习笔记（2）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-01 11:15:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="屠一乐" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://view.lixingyong.com/images/2022/08/12/wallhaven-k7oy57_1920x1080.png')"><nav id="nav"><span id="blog-info"><a href="/" title="屠一乐"><img class="site-icon" src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg"/><span class="site-name">屠一乐</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【UML统一建模思想】2万字超详细学习笔记（2）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-21T11:18:50.000Z" title="发表于 2023-03-21 19:18:50">2023-03-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-01T03:15:29.000Z" title="更新于 2023-05-01 11:15:29">2023-05-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/uml%E5%8F%8A%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/">uml及设计思想</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">11.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>34分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【UML统一建模思想】2万字超详细学习笔记（2）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><span id="more"></span>
+
+<blockquote>
+<p>🌈博客主页：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qiangzi666/">屠一乐的博客</a><br>📅 发文时间：2023.3.21<br>🎈 一定存在只有你才能做成的事<br>🌹 博主水平有限，如有错误，欢迎指正<br>欢迎各位👍收藏💎评论✉</p>
+</blockquote>
+<h3 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h3><ul>
+<li><a href="#_8">通信图</a></li>
+<li><a href="#_160">时序图</a></li>
+<li><a href="#_372">状态图</a></li>
+<li><a href="#_734">活动图</a></li>
+<li><a href="#_972">组件图</a></li>
+<li><a href="#_1150">部署图</a></li>
+</ul>
+<h1 id="通信图"><a href="#通信图" class="headerlink" title="通信图"></a>通信图</h1><p>通信图的概念：通信图（协作图）是表现对象交互关系的图，它展现了多个对象在协同工作达成共同目标的过程中互相通信的情况，通过对象和对象之间的链、发送的消息来显示参与交互的对象。</p>
+<p>首先通信图一样是一种交互图，它描述的是对象和对象之间的关系，即一个类操作的实现。简而言之就是，对象和对象之间的调用关系，体现的是一种组织关系。</p>
+<p>通信图中的元素主要有对象、消息和链三种。对象和链分别作为通信图中的类元角色和关联角色出现，链上可以有消息在对象间传递</p>
+<p>从结构方面来看，通信图包含了一个对象的集合并且定义了它们之间的行为方面的关系，表达了一些系统的静态内容。</p>
+<p>从行为方面来看，通信图包含了在各个对象之间进行传递交换的一系列的消息集合，以完成协作的目的。</p>
+<p>通信图是一种描述协作在某一语境下的空间组织结构的图形化方式，在使用其进行建模时，主要具有以下三个作用。</p>
+<p>1）通过描绘对象之间消息的传递情况来反映具体使用语境的逻辑表达。</p>
+<p>2）显示对象及其交互关系的空间组织结构。</p>
+<p>3）表达一个操作的实现。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/e7bd980716ca6930caf923b6c281a20d.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/0e58404ec7c844f1625596092d1209b2.png" alt="img"></p>
+<p>通信图的组成元素: 对象、链、消息</p>
+<p>对象</p>
+<p>通信图中的对象与顺序图中对象的概念相同，都是表示类的实例。</p>
+<p>通信图只关注相互有交互作用的对象和对象关系，而忽略其他对象。</p>
+<p>由于通信图中不表示对象的创建与销毁，因此，对象在通信图中的位置没有限制。</p>
+<p>与顺序图中对象的表示法不同的是，通信图中的无法显示对象的生命线。</p>
+<p>链</p>
+<p>通信图中的链与对象图中的链在语义以及表示法上都相同，都是两个（或多个）对象之间的独立连接，是关联的实例。链同时也是通信图中关联角色的实例，其生命受限于协作的生命。</p>
+<p>链连接的两个对象之间允许在交互执行过程中进行消息传递和交互。UML也允许对象自身与自身之间建立一条链。链可以通过对自己命名来进行区分和说明，也可以仅仅做连接而不进行命名。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/4c7dbff4ebd4b2f1ecf7f0129d3e263d.png" alt="img"></p>
+<p>消息</p>
+<p>通信图的消息需要附加在对象之间的链上，链用于传输或实现消息的传递。</p>
+<p>通信图中的消息通过在链的上方或下方添加一个短箭头来表示，通常需要使用阿拉伯数字作为序号来表示通信图中发送消息的顺序。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/0164889b2e5fb83115d666f7d33894af.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b9ddc29562c12bfb7d5ef1106dfbfb5f.png" alt="img"></p>
+<p>通信图与顺序图的异同点:</p>
+<p>通信图与顺序图的共同点主要有如下3点：</p>
+<p>1）主要元素相同。两种图中的主要元素都是对象与消息，且都支持所有的消息类型。</p>
+<p>2）表达语义相同。两种图都是对系统中的交互建模，描述了系统中某个用例或操作的执行过程，二者的语义是等价的。</p>
+<p>3）对象责任相同。两种图中的对象都担任了发送者与接收者的角色并承担了发送与接收消息的责任。通过对象之间消息的传递来实现系统的功能。</p>
+<p>两种图之间的不同点也有如下3点：</p>
+<p>1）通信图偏重于将对象的交互映射到连接它们的链上，这有助于验证类图中对应的类之间关联关系的正确性或建立新的关联关系的必要性。然而顺序图偏重描述交互中消息传递的逻辑顺序。因此通信图更适用于展示系统中的对象结构，而顺序图则擅长表现交互中消息的顺序。</p>
+<p>2）顺序图可以显式地表现出对象创建与撤销的过程，而在通信图中，只能通过消息的描述隐式地表现这一点。</p>
+<p>3）顺序图还可以表示对象的激活情况，而对于通信图来说，由于缺少表示时间的信息，除了对消息进行解释，无法清晰地表示对象的激活情况。</p>
+<p>通信图与顺序图对比</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/db5c7d834a0f5245daafe0ba0ff97052.png" alt="img"></p>
+<p>时序图</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/8307af0cd34e491ea7ce611ce893b067.png" alt="img"></p>
+<p>通信图</p>
+<p>通信图建模技术</p>
+<p>按组织对控制流建模</p>
+<p>识别交互的语境，即交互所处的环境。</p>
+<p>识别出图中应该存在的对象。</p>
+<p>识别可能有消息传递的对象并设置链。</p>
+<p>设置对象间的消息。</p>
+<p>如果需要更多约束，如时间或空间的约束，可以使用其他的约束来修饰这些消息。</p>
+<p>案例（1）添加新书</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/32ebc24c24da81644bc2641dc0fd6810.png" alt="img"></p>
+<p>案例（2）学位初评</p>
+<p>教务人员通过学号在学位初评系统查询学生的初评情况。学位初评系统分别在成绩管理系统、奖罚管理系统、毕业设计管理系统查询成绩、奖罚、毕业设计情况。并根据情况生成学位初评结果，通过信息打印模块打印初评情况。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c3584fb47695bc632948add6cebac6a3.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1e3187f20a67a7b38a534b28b24b9e37.png" alt="img"></p>
+<p>案例（3）登录系统</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/0fefafbc4fd54d908306524ba962cef6.png" alt="img"></p>
+<p>案例（4）添加用户信息</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c9b17b337d279ceb9bf8baea61eb9f89.png" alt="img"></p>
+<h1 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h1><p>顺序图的概念: 顺序图是按时间顺序显示对象交互的图。它显示了参与交互的对象和所交换信息的先后顺序，用来表示用例中的行为，并将这些行为建模成信息交换。</p>
+<p>顺序图是一种交互图，强调消息的时间顺序，亦称时序图</p>
+<p>顺序图主要包括四个元素：对象、生命线、激活和消息。</p>
+<p>在UML中，顺序图将交互关系表示为一张二维图。</p>
+<p>其中纵向是代表时间维度，时间向下延伸，按时间依次列出各个对象所发出和接收的消息。水平方向是代表对象的维度，排列着参与交互的各个独立的对象。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/3349b671c27f89e52db9afcb4feaa10c.png" alt="img"></p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-LuAa2iKU-1679397331696)(<a target="_blank" rel="noopener" href="https://gitee.com/qiangzi-icu/picture/raw/master/1130413-20190208205028411-980536992.png/)/]">https://gitee.com/qiangzi-icu/picture/raw/master/1130413-20190208205028411-980536992.png\)\]</a></p>
+<p>顺序图的三种主要作用：</p>
+<p>1）细化用例的表达。本章前面我们已经提到，使用顺序图的一大用途，就是讲用例所描述的需求与功能转化为更加正式、层次更加分明的细化表达。</p>
+<p>2）有效地描述类职责的分配方式。我们可以根据顺序图中各对象之间的交互关系和发送的消息来进一步明确对象所属类的职责。</p>
+<p>3）丰富系统的使用语境的逻辑表达。系统的使用语境即为系统可能的使用方式和使用环境。</p>
+<p>顺序图的组成元素：对象、生命线、激活、消息。</p>
+<p>对象</p>
+<p>顺序图中的对象与对象图中的概念一样，都是类的实例。顺序图中的对象可以是系统的参与者或者任何有效的系统对象。</p>
+<p>对象的创建由头符号来表示，即在对象创建点的生命线顶部使用显示对象名和类名的矩形框来标记。</p>
+<p>在位置上，一个被放置于顺序图顶端的对象，意味着在这个交互的开始之前，我们已经拥有这样一个对象了。如果一个对象出现在其它位置上（不在顶端），则说明这个对象是在交互执行到某些步骤的时候被创建出来的。被创建出来的对象可以在接下来的时间里被其它对象的消息所激活，也可以以同样的方式被销毁。</p>
+<p>生命线</p>
+<p>生命线代表了一次交互中的一个参与对象在一段时间内存在。具体地说，在生命线所代表的时间内，对象一直是可以被访问的——可以随时发送消息给它。</p>
+<p>在顺序图中，生命线位于每个对象的底部中心位置，显示为一条垂直的虚线，与时间轴平行，带有一个显示对象的头符号。</p>
+<p>对于在交互过程中被创建的对象，其生命线从接收到新建对象的消息时开始。对于在交互过程中被销毁的对象，其生命线在接收到销毁对象的消息时或在自身最后的返回消息之后结束，同时用一个“X”标记表明生命线的结束。</p>
+<p>激活</p>
+<p>激活，又称为控制焦点，表示一个对象执行一个动作所经历的时间段，既可以是直接执行，也可以是安排下级过程执行。同时，激活也可以表示对应对象在这段时间内不是空闲的，它正在完成某个任务，或正被占用。</p>
+<p>激活在UML中用一个细长的矩形表示，显示在生命线上，如图8-5所示。矩形的顶部表示对象所执行动作的开始，底部表示动作的结束。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/445ee4ef74c30c8220d7189d4eccffee.png" alt="img"></p>
+<p>消息</p>
+<p>除了以上这些消息类型以外，Rose还扩充了两种消息类型，分别是阻止消息与超时消息。</p>
+<p>阻止消息：当消息的发送者传递消息给接收者，如果接收者无法立即接收，则发送者放弃该消息。</p>
+<p>超时消息：若发送消息后接收者无法在指定时间内接收，则发送者放弃该消息。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/81dd85ff4faf0d18234526fc9df51e56.png" alt="img"></p>
+<p>顺序图中的结构化控制</p>
+<p>在UML 2中，顺序图提供了“片段” 机制，可以通过顺序图来表达更加复杂的动作序列。</p>
+<p>可选片段：关键字为opt，表示一种单条件分支。</p>
+<p>条件片段：关键字为alt，表示一种多条件分支。</p>
+<p>并行片段：关键字为par，表示片段内有多个并行子片段的片段。</p>
+<p>循环片段：关键字为loop，表示一个循环。</p>
+<p>交互片段：关键字为ref，表示对一段交互的引用。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/40be58901f446ec3a2de5e34b666563e.png" alt="img"></p>
+<p>顺序图建模技术</p>
+<p>按时间顺序对控制流建模：</p>
+<p>设置交互的语境。交互语境即交互所在的环境，包括交互属于那个系统、子系统，包含哪些类和对象，对应于哪个用例或协作的脚本等。</p>
+<p>设置交互的场景，即识别对象在交互中扮演的角色，根据对象的重要性排列对象的顺序。</p>
+<p>为对象设置生命线。</p>
+<p>按时间顺序排列消息。</p>
+<p>设置激活期。</p>
+<p>附加时间和空间约束。</p>
+<p>设置前置与后置条件。</p>
+<p>补充</p>
+<p>顺序图的变体——时间图</p>
+<p>时间图是UML 2中新增加的图，相当于另一种显示顺序图的方法。</p>
+<p>时间图与顺序图的主要不同之处有：</p>
+<p>1）时间轴与对象轴交换了位置。在时间图中，纵向表示不同对象，横向表示时间的延伸。</p>
+<p>2）不同对象的生命线在独立的矩形框中显示，矩形框纵向堆砌成整个图。</p>
+<p>3）对象可以有不同的状态。每个对象的状态在其生命线的最左侧纵向排列，生命线通过上下起伏来表示对象当前所处的状态。</p>
+<p>4）可以显示一个时间标尺。时间标尺上有时间刻度，用来表示时间间隔。</p>
+<p>5）不同对象生命线上的时间是同步的。</p>
+<p>建立顺序图的步骤：</p>
+<p>1.确定需要建模的工作流</p>
+<p>2.从左到右布置对象</p>
+<p>3.添加消息和条件以便创建工作流</p>
+<p>例子：系统用户注册模块</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/24907bfff956693f3a2529c086862e3b.png" alt="img"></p>
+<p>案例（1）就餐</p>
+<p>需求描述如下：</p>
+<p>客人到餐厅就餐，服务员提供菜单，客人点菜后把菜单交给服务员。服务员向客人确定菜单后，将菜单提交给大堂经理。大堂经理把菜单提交给大厨，大厨完成菜品后传递给大堂经理，大堂经理安排服务员传菜。有的客人可能需要酒水，有的客人不需要酒水。客人结束用餐后，服务员提供账单，客人结账。</p>
+<p>确认对象</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/8cfa273038511f7bd86bce84e0754915.png" alt="img"></p>
+<p>确定出现顺序</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b816b75e2afb5e13524655c95280959b.png" alt="img"></p>
+<p>确定消息</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b91674eb6805de7f54af9357fe07f01d.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/60a346ffa087c4b93051c317150f0bca.png" alt="img"></p>
+<p>案例（2）ATM机取款</p>
+<p>需求描述如下：</p>
+<p>用户通过ATM机，插入银行卡。系统提示输入密码，用户输入密码。系统检查密码是否正确，密码正确用户选择取款。系统提示输入取款金额。用户输入金额，系统判断其合法性。在获取用户输入金额后，系统开始事物处理，减少账户金额，输出相应现金。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/469caf67e88769c726af2e9a141919f6.png" alt="img"></p>
+<p>案例（3）成绩查询</p>
+<p>需求描述如下：</p>
+<p>老师通过学号在系统查询成绩，有存在、不存在两种情况。存在显示成绩，不存在显示查无此人。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/e047bb3e24d79dba61f3223cc0fd4df1.png" alt="img"></p>
+<h1 id="状态图"><a href="#状态图" class="headerlink" title="状态图"></a>状态图</h1><p>基本概念: 状态机图，UML 1.x规范中称状态图，是一个展示状态机的图。</p>
+<p>状态机图基本上就是一个状态机中元素的投影，这也就意味着状态机图包括状态机的所有特征。状态机图显示了一个对象如何根据当前状态对不同事件做出反应的动态行为。</p>
+<p>状态机图主要由状态和转换两种元素组成。</p>
+<p>状态机</p>
+<p>状态机是一种行为，它说明对象在其生命周期中响应事件所经历的状态变化序列以及对那些时间的响应。</p>
+<p>一般情况下，一个状态机依附于一个类，用来描述这个类的实例的状态及其转换，和对接收到的事件所做出的响应。此外，状态机也可以依附于用例、操作、协作等元素上，描述它们的执行过程。</p>
+<p>状态机从对象的初始状态开始，响应事件并执行某些动作，从而引起状态的转换；在新状态下又继续响应事件并执行动作，如此循环进行到对象的终结状态。</p>
+<p>状态机主要由状态、转换、事件、动作和活动5部分组成。</p>
+<p>1）状态表示对象的生命周期中的一种条件或情况。</p>
+<p>2）转换表示两种状态间的一种关系。</p>
+<p>3）事件表示在某一时间与空间下所发生的有意义的事情。</p>
+<p>4）动作表示一个可执行的原子操作，是UML能够表达的最小计算单元</p>
+<p>5）活动表示状态机中的非原子执行，一般由一系列动作组成。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/76044b10e25c72580ecb312993eaecb7.png" alt="img"></p>
+<p>状态机图作用：状态机图用于对系统的动态方面进行建模，适合描述一个对象在其生命周期中的各种状态及状态的转换。</p>
+<p>状态机图的作用主要体现在以下几点：</p>
+<p>1）状态机图描述了状态转换时所需的触发事件和监护条件等因素，有利于开发人员捕捉程序中需要的事件。</p>
+<p>2）状态机图清楚地描述了状态之间的转换及其顺序，这样就可以方便地看出事件的执行顺序，状态机图的使用节省了大量的描述文字。</p>
+<p>3）清晰的事件顺序有利于开发人员在开发程序时避免出现事件错序的情况。</p>
+<p>4）状态机图通过判定可以更好地描述工作流在不同的条件下而出现的分支。</p>
+<p>状态机图的组成: 简单状态、转换、伪状态。</p>
+<p>简单状态</p>
+<p>状态是状态机图的重要组成部分，它描述了一个对象稳定在的某一个持续过程或所处状况，与动态行为的执行所产生的结果。</p>
+<p>当对象满足某一状态的条件时，该状态被称为激活的。</p>
+<p>在UML中，状态分为简单状态与复合状态。</p>
+<p>a.简单状态就是没有嵌套的状态。</p>
+<p>b.初态和终态是两个特殊的状态，分别表示状态机的入口状态和出口状态。对于一个不含嵌套结构的状态机，只能有一个初态，可以有一个或多个终态甚至没有终态。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f9faa24a37edfc42ea3ed1b7c30b401d.png" alt="img"></p>
+<p>状态一般由状态名称、子状态、入口动作和出口动作、内部执行活动、内部转换和可推迟事件组成。对于简单状态而言，不会有子状态。</p>
+<p>状态名称：可以把一个状态与其他状态分别开来，即状态名称必须在当前层次内保持唯一。没有名称的状态被称为匿名状态。</p>
+<p>入口动作与出口动作：由其它状态转移到当前状态或从当前状态转移到其它状态时要附带完成的动作。表示为“entry &#x2F;动作表达式”和“exit &#x2F;动作表达式”。</p>
+<p>内部执行活动：当对象进入一个状态时，在执行完入口动作后就开始执行该活动。使用“do&#x2F;活动表达式”来表示。</p>
+<p>内部转换：指的是不导致状态改变的转换。内部转换只有源状态而没有目标状态。表示为“事件名称（事件参数）&#x2F;活动表达式”。</p>
+<p>可推迟事件：不会触发状态的转换，且当对象处于该状态时事件可能会被推迟，但不会丢失。格式为“事件名称&#x2F;defer”。</p>
+<p>转换</p>
+<p>转换是两种状态间的一种关系。它指明当特定事件发生或特定条件满足时，处于某状态（源状态）的对象将执行某一动作或活动并进入另一状态（目标状态）。</p>
+<p>转换表示为从源状态指向目标状态的实线箭头，并附有转换的标签。转换的标签格式如下：</p>
+<p>⌊转换名称:⌋opt 事件名称opt ⌊(参数列表)⌋opt ⌊[监护条件]⌋opt ⌊&#x2F;效果列表⌋opt</p>
+<p>转换——转换名</p>
+<p>转换名称是转换的标识符。在实际使用中，为了防止转换名称与转换的触发器或监护条件混淆，一般不必为转换命名。</p>
+<p>对于一个转换，除了源状态、目标状态外，还要有事件、监护条件和效果列表等内容。这三个部分的内容对转换不是必需的，在使用时要根据转换所表达的具体语义来添加相应内容。</p>
+<p>转换——事件</p>
+<p>事件是在某一时间与空间下所发生的有意义的事情，是系统执行中发生的值得建模的事物。</p>
+<p>事件一般被状态或转换所发送和接收。在转换中被接收的事件也被称为该转换的触发器或触发事件。</p>
+<p>事件包含一个参数列表（可能为空），用于从事件的产生者向其接收者传递信息。</p>
+<p>对应于触发器转换，没有明确的触发器的转换成为结束转换或无触发器转换，是在状态的内部活动执行完毕后隐式触发的。</p>
+<p>能够在触发器中接收的事件有以下四种：</p>
+<p>1）调用事件：调用事件表示对象接收到一个调用操作的请求。其期待的结果是事件的接收者触发一个转换并执行相应的操作。</p>
+<p>2）改变事件：改变事件的发生依赖于事件中某个表达式所表达的布尔条件。改变事件没有参数，要一直等到条件被满足才能发生。</p>
+<p>3）信号事件：信号由一个对象准确地送给另一个或一组对象。发送给一组对象的信号可能触发每个对象的不同转换。</p>
+<p>4）时间事件：时间事件的发生依赖于事件中的一个时间表达式。比如，可以让对象进入某状态后经过一段给定的时间或到达某个绝对时间后发生该事件。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1b7e6992b98b8ca99016bce1bbb7698a.png" alt="img"></p>
+<p>转换——监护条件</p>
+<p>监护条件是一个转换被激发之前必须满足的一个条件。</p>
+<p>监护条件是一个布尔表达式，可以根据触发器事件的参数、属性和状态机所描述的对象的链接等写成。当转换接收到触发事件后，只有监护条件为真，转换才能被激活。</p>
+<p>对监护条件的检验是触发器计算过程的一部分，对于每个事件监护条件只检查一次。如果事件被处理时监护条件为假，那么除非再次接收到一个触发事件，将不会再重新计算监护条件的值。</p>
+<p>转换——效果列表</p>
+<p>效果列表是一个过程表达式，在转换被激活时执行，表示转换附加的效果。</p>
+<p>效果列表包括多个动作，可以根据操作、属性、拥有对象的连接、触发器事件的参数等写成。动作可以是一个赋值语句、算术运算、发送事件、调用对象的属性或操作、创建或销毁对象等。</p>
+<p>效果的表达语法与其实现的具体内容有关。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/6be84ce6f1f025552d6bc8620f100b0e.png" alt="img"></p>
+<p>例子（1）：简单的状态机图—吃饭状态</p>
+<p>做需求时，需要了解以下六种元素：起始、终止、现态、次态（目标状态）、动作、条件，我们就可以完成一个状态机图了</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/0c1e2a0fc9f40bf882b161450cb0ef6e.png" alt="img"></p>
+<p>①现态：是指当前所处的状态。</p>
+<p>②条件：又称为“事件”，当一个条件被满足，将会触发一个动作，或者执行一次状态的迁移。</p>
+<p>③动作：条件满足后执行的动作。动作执行完毕后，可以迁移到新的状态，也可以仍旧保持原状态。动作不是必需的，当条件满足后，也可以不执行任何动作，直接迁移到新状态。</p>
+<p>④次态：条件满足后要迁往的新状态。“次态”是相对于“现态”而言的，“次态”一旦被激活，就转变成新的“现态”了。</p>
+<p>画状态机图的注意事项：</p>
+<p>1、避免把某个“程序动作”当作是一种“状态”来处理。那么如何区分“动作”和“状态”？“动作”是不稳定的，即使没有条件的触发，“动作”一旦执行完毕就结束了；而“状态”是相对稳定的，如果没有外部条件的触发，一个状态会一直持续下去。</p>
+<p>2、状态划分时漏掉一些状态，导致跳转逻辑不完整。所以在设计状态机时，我们需要反复的查看设计的状态图或者状态表，最终达到一种牢不可破的设计方案。</p>
+<p>例子（2）需求岗工作状态</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f4a89b06d0ee79dd5b446c1e7fcaf2fd.png" alt="img"></p>
+<p>伪状态</p>
+<p>概念：伪状态指的是在状态机中具有状态的形式，却具有特殊行为的顶点。</p>
+<p>当一个伪状态处于活动时，系统不会处理事件，而是瞬间自动转换到另一个状态，并且这种转换是没有事件进行显式触发的。</p>
+<p>最常见的伪状态包括初态、选择、分叉与结合、历史状态等。</p>
+<p>a.初态：初态实际上不是一个真正的状态，它更像是状态机的入口。初态的具体语义概念是模糊的且是瞬时的，不能存在触发器进行触发，否则对象将可能会长时间停留在一个语义不明的初态中。</p>
+<p>b.选择是状态机中的一个伪状态节点，用于表达状态机中的分支结构。</p>
+<p>一个选择节点将一个转换分割为两个片段，即将触发事件与监护条件分离。</p>
+<p>选择节点不同分支上的监护条件应该覆盖所有情况，否则状态机将不知道如何运行。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/136c4ff1868c64dbeffd7fff9acf3f0c.png" alt="img"></p>
+<p>例子（3）订单状态机图</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9a1ef146da173f9c9964a73741788ac4.png" alt="img"></p>
+<p>复合状态</p>
+<p>概念：复合状态是指包含有一个或多个嵌套状态机的状态。</p>
+<p>a.顺序复合状态：当顺序复合状态被激活时，只有一个子状态会被激活。</p>
+<p>b.并发复合状态：复合状态中包括两个或多个并发执行的子状态机。</p>
+<p>在复合状态中，我们可以先将一部分细小的状态组合成一个状态机，把这个新的状态机作为总状态机图中的一个复合状态来呈现。</p>
+<p>顺序复合状态</p>
+<p>顺序复合状态又被称为非正交状态，是仅含一个状态机的复合状态。</p>
+<p>当顺序复合状态被激活时，只有一个子状态会被激活。它只增加了一层子结构，没有增加额外的并发性。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/171fd6e854d1a1fff98177b0e9f66a29.png" alt="img"></p>
+<p>并发复合状态</p>
+<p>并发复合状态，也称正交复合状态，是包括两个或多个并发执行的子状态机的复合状态。</p>
+<p>并发复合状态将复合状态分成若干个正交区域，每个区域都有一个相对独立的子状态机。如果该并发复合状态是激活的，那么该状态中每个区域都将有一个状态是激活的。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/85c8f735c27cdc5afdcaa3e20ad819e6.png" alt="img"></p>
+<p>历史状态</p>
+<p>历史状态是应用于复合状态的一种伪状态，它代表上次离开该复合状态时的最后一个子状态。</p>
+<p>当一个来自于复合状态外的转换为复合状态内的历史状态时，将使历史状态所记录的子状态被激活。</p>
+<p>深历史状态保存的更深的嵌套层次中的子状态。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/bc70f52536e84341d061dfb935dc1f07.png" alt="img"></p>
+<p>状态机图的建模技术</p>
+<p>为对象的生命周期建模</p>
+<p>确定状态机的语境。</p>
+<p>设置状态机的初态和终态。</p>
+<p>决定该对象的状态机中可能需要响应的事件。</p>
+<p>从初态到终态，列出这个对象可能处于的所有顶层状态。用转移将这些状态连接起来，明确转移的触发器和监护条件，接着向转移中添加效果动作。</p>
+<p>识别状态是否需要有入口动作和出口动作。</p>
+<p>如果需要，使用子状态来对顶层状态进行嵌套。</p>
+<p>检查状态机中提供的事件是否与所期望的相匹配；检查所有事件是否都已经被状态机所处理。</p>
+<p>检查状态机中的动作是否能由类或对象的关系、操作等支持。</p>
+<p>跟踪状态机，确保状态机是良构的，即不存在无法到达的状态，也不会发生停机。</p>
+<p>例子（4）音乐播放</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/dd3d91d374db31762d8e4563d1e5d78d.png" alt="img"></p>
+<p>例子（5）取消航班</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/92eef48ca4b2ac3eab1546f1499daf71.png" alt="img"></p>
+<p>例子（6）系统进程状态机图</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b15d33ecbf4358565ad612a794563c2f.png" alt="img"></p>
+<p>案例</p>
+<p>新生入学后，学校在三个月内按照国家招生规定对其进行复查。复查合格者予以注册，取得学籍。复查不合格者，学校区别情况予以处理，直至取消入学资格。</p>
+<p>学生有如下情况之一者，应予休学：</p>
+<p>（一）因伤病经学校指定医院诊断，须停课治疗、休养一学期1&#x2F;3时间；</p>
+<p>（二）一学期请假缺课超过该学期总学时的1&#x2F;3；</p>
+<p>（三）传染性肝炎、肺结核等传染性疾病；</p>
+<p>（四）因某种特殊原因，学校认为必须休学。</p>
+<p>学生休学至少一学期，一般以一年为限。学生复学后，休学之前已记入成绩档案的考核成绩继续有效，并作为学籍处理依据.</p>
+<p>学生复学按下列规定办理：</p>
+<p>（一）学生因伤病休学申请复学时，须持有二级甲等以上医院诊断书，证明身体健康，并经学校指定医院复查合格，方可复学；</p>
+<p>（二）学生休学期满后应于学期的注册期内持有关证明，经教务处核准后编入原专业相应班级选课学习；</p>
+<p>学生有下列情况之一者，应予退学：</p>
+<p>（一）学生在读期间，3次出现在一学期中取得的课程学分不足10学分（不含重修和补考学分；毕业学期除外；第一次提出警告，第二次提出退学警告，由教务处公布名单，院系负责通知学生家长）；</p>
+<p>（二）休学、保留学籍期满，在规定期限内不办理复学手续；</p>
+<p>（三）休学累计满二年，经复查不合格；</p>
+<p>（四）因伤病需要休学，经学校动员后仍不办理休学手续；</p>
+<p>（五）经学校指定医院确诊患有疾病，或意外伤残无法继续在校学习；</p>
+<p>（六）未请假离校连续2周末参加学校规定的教学活动；</p>
+<p>(七) 超过学校规定期限未注册而又无正当事由；</p>
+<p>（八）本人要求退学。</p>
+<p>学生在规定的学习年限（4年制3～6年，5年制4～7年）内修完本专业培养计划规定的全部教学环节，取得注册专业规定的毕业学分，准予毕业，发给毕业证书。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f7cf868aa070359c15227bf8f0637668.png" alt="img"></p>
+<h1 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h1><p>基本概念：是UML中一种重要的用于表达系统动态特性的图</p>
+<p>活动图的作用是描述一系列具体动态过程的执行逻辑，展现活动和活动之间转移的控制流，并且它采用一种着重逻辑过程的方式来叙述。</p>
+<p>在对软件密集系统建模的时候，有时需要详细地模拟系统在运作时的业务流程。面对这种需要，我们可以分析对象间发生的活动和触发条件，选用活动图对这些动态方面进行建模。</p>
+<p>活动图的主要组成元素包括动作、活动、动作流、分支与合并、分叉与汇合、泳道和对象流等。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/2fd8fffbe8e68ae318f2db7c3832a7b1.png" alt="img"></p>
+<p>活动图组成元素：动作和活动节点、开始和终止、控制流、判断节点、合并节点、泳道。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/288b4fda606390e5f004ad345c0eff9f.png" alt="img"></p>
+<p>动作和活动节点</p>
+<p>动作代表一个原子操作，操作可能是任何合法的行为。</p>
+<p>动作可以是并且不限于：创建或删除对象、发送消息、调用接口，甚至数学运算以及返回表达式的求值结果。</p>
+<p>活动节点是一系列动作，主要用于实现动作序列的简化和动作图的嵌套。活动节点在图例上的表达方式和动作相同。、</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/aeb94819ab63534c33c5dbbd76e71ca3.png" alt="img"></p>
+<p>开始和终止</p>
+<p>活动图中的开始和终止是两个标记符号，分别标记了业务流程的起始位置和结束位置。</p>
+<p>活动图中必须有且仅有一个开始标记，一般至少有一个结束标记。（存在一些特殊的无穷过程不存在终止标记。）</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9cc6c515a23af50d2031e24aebf8f7bf.png" alt="img"></p>
+<p>控制流</p>
+<p>控制流是活动图中用于标示控制路径的一种符号。它负责当一个动作或活动节点执行完毕后，将执行主体从当前已完毕的节点转移到过程的下一个动作或动作节点。</p>
+<p>控制流从活动图的开始标记开始运行，经过顺序、分支等结构引导着各个动作的连续执行。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/cf2209b082679a21215bf0f73cc9ec41.png" alt="img"></p>
+<p>判断节点</p>
+<p>判断节点是活动图中进行逻辑判断、并创造分支的一种方法。</p>
+<p>判断节点具有一个进入控制流和至少两个导出控制流。</p>
+<p>判断节点具有多个导出流，对于每条导出流而言，应当在表示该控制流的箭头上附加控制条件。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/be5cb86b64f915638dc18b3dd0aff802.png" alt="img"> <img src="https://img-blog.csdnimg.cn/img_convert/da5e9a0e827818c289c180f8f4feb6da.png" alt="img"></p>
+<p>合并节点</p>
+<p>合并节点将多个控制流进行合并，并统一导出到同一个离开控制流。</p>
+<p>合并节点仅有逻辑意义而没有时间和数据上的意义：几个动作都指向同一个合并节点也并不意味着这些动作要在进入之后互相等待或进行同步数据之类的操作。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/0061e6096398c890c66ab1262fece277.png" alt="img"></p>
+<p>泳道</p>
+<p>泳道是将活动中的具体活动按照负责进行该活动的对象进行分区，一条泳道中的所有活动由同一个对象来执行。</p>
+<p>除了以上的对线性流程进行分区以外，使用泳道表示法可以更清晰地表示并发。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f2af22ca4e33f4a08bc3ba574d02fa5a.png" alt="img"></p>
+<p>工时审批流程</p>
+<p>员工填写工时，项目工时报项目经理审批后再报部门经理审批、非项目工时直接报部门经理审批。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f6e83d7b50b8d7f38c6f5f94aa308774.png" alt="img"></p>
+<p>活动图的高级概念：分叉节点、结合节点、对象流、扩展区域</p>
+<p>分叉节点与结合节点</p>
+<p>分叉节点是从线性流程进入并发过程的过渡节点，它拥有一个进入控制流和多个离开控制流。分叉节点的所有离开流程是并发关系，即分叉节点使执行过程进入多个动作并发的状态。</p>
+<p>结合节点是将多个并发控制流收束回同一流程的节点标记，功能上与合并节点类似。结合节点的各个进入控制流间具有并发关系，它们在系统中同时运行。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/3f5cd0e70c6632f8204bdf2d6be84b4e.png" alt="img"></p>
+<p>例子：学生选课的活动图</p>
+<p>学生选上课后需要上课、复习、考试、查询成绩，查询成绩后可以申请复核、查询复核结果、成绩如果及格庆祝、未通过补考或重修。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/22df05dfd9085182e1d0e0648401ffa1.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9ed31a608d9d26964df9b73725e04722.png" alt="img"></p>
+<p>对象流</p>
+<p>对象流是UML为填补活动图与面向对象思想之间的疏离而出现的。如果需要在活动图中表现对象流，则首先需要绘制出泳道，且对象应该作为泳道的负责对象出现。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a8a6dd4643290c80d6bfec6b2d44c66c.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/de644db7c1ab0a2a37a3f93a8e4eb753.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d3517ce5493d9b5cf0b018d20c668934.png" alt="img"></p>
+<p>扩展区域</p>
+<p>扩展区域是表示过程中的某个活动片段的模型。扩展区域可以将一个需要体现在活动图中的循环过程进行提取（不需要体现在活动图中的，可以直接使用活动节点来略写）。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9602d8c98c30bc38874bdd54787a7c62.png" alt="img"></p>
+<p>活动图建模技术</p>
+<p>对业务流程建模</p>
+<p>选择一个将要描述的重要过程，过程中尽量涉及数量少但是关键的对象或参与者，将无关或关联很小的对象排除在外，为每一个对象或参与者绘制泳道。</p>
+<p>在总体业务流程中提取关键的动作或活动节点，并且将他们与对象或参与者相对应；若发现有些动作无法对应，则考虑动作是否在这个流程中起关键作用，或者是否遗漏了某些对象或参与者。</p>
+<p>规定初始状态；确定过程可能的结束位置，为活动图添加开始和结束节点。</p>
+<p>从业务流程的开始节点开始，把过程中发生的动作按事件顺序排列，依次把这些动作添加到活动图中。</p>
+<p>把局部的过于复杂的动作序列加以总结，绘制成一个活动节点；如果需要，把这个动作序列使用另外的活动图进行建模。</p>
+<p>找出连接这些动作和活动节点的控制流，并且准确找到过程中的分支、分叉、合并与结合节点。</p>
+<p>如果业务流程中有一些关键对象的值或状态需要加以描述，使用对象流添加这些对象在某些动作或活动节点前后的状态描述。</p>
+<p>对用例交互建模</p>
+<p>选择概念用例——即从系统对客户提供的各种服务中确定出一个关键业务，这个关键业务可能是在多个相同或不同的情况下反复出现，或者是系统需要提供的一个关键服务或进行的关键操作。</p>
+<p>对于当前选择的用例，通过事件流进行顺序叙述，并找出所有的参与者主动动作，把这些动作整理成动作或活动节点。</p>
+<p>把参与者和系统划分为两个泳道，如果有除了主参与者以外的其它参与者，也为它们分别划分泳道。</p>
+<p>把活动节点纵向按照事件发生顺序、横向按照参与者角色和系统角色对应填入活动图中。</p>
+<p>绘制活动图</p>
+<p>“活动图” 比较直观易懂；与传统的流程图十分的相近，只要能够读懂活动图，就不难画出活动图</p>
+<p>绘制时首先决定是否采用泳道：主要根据活动图中是否要体现出活动的不同实施者</p>
+<p>然后尽量使用分支、分岔和汇合等基本的建模元素来描述活动控制流程</p>
+<p>如果需要，加入对象流以及对象的状态变化，利用一些高级的建模元素（如辅助活动图、汇合描述、发送信号与接收信号、引脚、扩展区）来表示更多的信息</p>
+<p>活动图的建模关键是表示出控制流，其它的建模元素都是围绕这一宗旨所进行的补充</p>
+<p>例子（1）上班活动图</p>
+<p>早上起来，心里斗争是否去上班。如果决定睡懒觉，就打电话请假，继续睡觉。如果决定上班，洗漱后出门上班。上班时要决定吃不吃早餐，吃就买早餐在途中食用，不吃就回公司再做打算。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/58aa31f2203e11bd2d396ba425a85a58.png" alt="img"></p>
+<p>例子（2）汽车租赁</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/7dc8e53d1c9bfd4fc9b94838b692acbc.png" alt="img"></p>
+<p>例子（3）客户下单</p>
+<p>用户下单后，生成送货清单时让客户选择支付方式。若支付成功后，将收款清单和送货地址交到供货商，供货商修改订单状态，如果送货完成则订单完成否则返回供货商。若支付超时、或支付失败，则结束。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/db1cf675de2bad89f542a3da95e2aabe.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d8063d4370363f38ae562ee61a48280b.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d2b52ff3872431ab6c79eb75d2f03e4e.png" alt="img"></p>
+<h1 id="组件图"><a href="#组件图" class="headerlink" title="组件图"></a>组件图</h1><p>基本概念：组件图即是用来描述组件与组件之间关系的一种UML图。组件图在宏观层面上显示了构成系统某一个特定方面的实现结构。</p>
+<p>组件图中主要包含三种元素，即组件、接口和关系。</p>
+<p>组件图通过这些元素描述了系统的各个组件及之间的依赖关系，还有组件的接口及调用关系。此外，组件图还可以使用包来进行组织，使用注解与约束来进行解释和限定。</p>
+<p>组件图在面向对象设计过程中起着非常重要的作用：它明确了系统设计，降低了沟通成本，而且按照面向对象方法进行设计的系统和子系统通常保证了低耦合度，提高了可重用性。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/73c0e8115489878dade14bb7d2960c4e.png" alt="img"></p>
+<p>组件图的组成元素：组件、接口、组件图中的关系、组件的内部结构。</p>
+<p>组件</p>
+<p>组件，是系统设计的一个模块化部分，它隐藏了内部的实现，对外提供了一组接口。</p>
+<p>组件是一个封装完好的物理实现单元，它具有自己的身份标示和定义明确的接口。并且由于它对接口的实现过程与外部元素独立，所以组件具有可替换性。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/2646dd9551986a0ce2c5c628bc5c968d.png" alt="img"> <img src="https://img-blog.csdnimg.cn/img_convert/7fc4f61a1ccadee44b1ab6f8245ee9da.png" alt="img"></p>
+<p>组件在系统中一般存在三种类型，分别为部署组件、工作产品组件和执行组件。</p>
+<p>a．配置组件是构成系统所必要的组件，是运行系统时需要配置的组件。</p>
+<p>b.工作产品组件主要是开发过程的产物，是形成配置组件和可执行文件之前必要的工作产品，是部署组件的来源。工作产品组件并不直接参与到可执行系统中，而是用来产生系统的中间产品。</p>
+<p>c．执行组件代表可运行的系统最终运行产生的运行结果，并不十分常见。</p>
+<p>一个ATM机的组件：</p>
+<p>系统设计的一个模块化部分</p>
+<p>显示界面</p>
+<p>读卡机</p>
+<p>业务操作—-查询、取款、转账、挂失</p>
+<p>学校教务系统的组件：</p>
+<p>系统设计的一个模块化部分</p>
+<p>登录界面、业务动作、层业务实现层</p>
+<p>学生管理、教师管理、成绩维护、选课</p>
+<p>接口</p>
+<p>对于一个组件而言，它有两类接口，提供接口与需求接口。</p>
+<p>a.提供接口：又被称为导出接口或供给接口，是组件为其他组件提供服务的操作的集合。</p>
+<p>b.需求接口：又被称为引入接口，是组件向其他组件请求相应服务时要遵循的接口。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/26bc2cecc9d0f24de933c9947e913fb7.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c4a6167d0f43e8111b818c46eb9e31bf.png" alt="img"></p>
+<p>端口</p>
+<p>端口（port）是一个被封装的组件的对外窗口。在封装的组件中，所有出入组件的交互都要通过端口。组件对外可见的行为恰好是它端口的综合。此外，端口是有标识的。别的组件可以通过一个特定端口与另一个组件通信。在实现时，组件的内部组件通过特定的外部端口来与外界交互，因此，组件的每个部件都独立与其他部件的需求。端口允许把组件的接口划分为离散的并且可以独立使用的几部分。端口提供的封装性和独立性更大程度上保证了组件的封装性和可替换性。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/fc32347758db4d5349a0f499108585ba.png" alt="img"></p>
+<p>组件的内部结构</p>
+<p>在UML 2规范中，组件允许通过嵌套结构来表现组件的内部结构。</p>
+<p>子组件之间通过接口建立关系。图中组件边缘的小矩形被称为端口，端口可以理解为组件的入口与出口，组件通过端口与外部元素相互协作。端口上可以添加提供接口或需求接口来使组件得以扩展。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1fcfc7f0b1b2c63531bda22e3fe8a88e.png" alt="img"></p>
+<p>组件图中的关系</p>
+<p>1.依赖关系</p>
+<p>a.组件与需求接口之间建立依赖关系</p>
+<p>b.组件与组件之间建立依赖关系：说明在运行过程中A在某些行为上依靠组件B的支持</p>
+<p>2.实现关系</p>
+<p>组件与提供接口之间建立实现关系</p>
+<p>组件图的建模技术</p>
+<p>对源代码结构建模</p>
+<p>识别出感兴趣的源代码文件集合，并建模为组件。</p>
+<p>如果系统规模较大，使用包对组件进行分组。</p>
+<p>可以使用约束或注解来表示源代码的作者、版本号等信息。</p>
+<p>使用接口和依赖关系来表示这些源代码文件之间的关系。</p>
+<p>检查组件图的合理性，并识别源代码文件的优先级以便进行开发工作。</p>
+<p>对可执行程序结构建模</p>
+<p>识别出相关的运行组件集合。</p>
+<p>考虑集合中每个组件的类型。</p>
+<p>如果系统规模较大，可以使用包对组件进行分组。这里包的使用可以对应于相应文件的文件存储结构。</p>
+<p>分析组件之间的关系，使用接口和依赖关系建模这些关系。</p>
+<p>考量建模结果是否实现了组件的各个特性，对建模的结果进行细化。</p>
+<p>案例（分析一个已经存在的系统）</p>
+<p>画出下列描述的网上商城组件图：购物车、订单、库存、支付管理组件，使用组件图进行完善。</p>
+<p>识别组件：购物车、订单、库存、支付管理</p>
+<p>识别组件之间的关系通过一个现实的例子。</p>
+<p>在购买一件商品时，我们首先是浏览商品，了解商品详情。在商品详细页面上，我们可以看到一个“加入购物车”</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ab7750ac5487a826156b640946adbe1a.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9b35c2b97a77783195a7fa77f35d9e12.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/04dbdfacf348c15754da685c601fb403.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/003fd1132ded2319ef24537874993e2f.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/874af92349a238b4db3297c14e3524a6.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f6bec7f63645ae2bbd45ec0660a1a6e0.png" alt="img"></p>
+<p>组件图</p>
+<h1 id="部署图"><a href="#部署图" class="headerlink" title="部署图"></a>部署图</h1><p>基本概念：是一种展示运行时进行处理的节点和在节点上存在的制品的配置的图。</p>
+<p>部署图它阐述了在实际应用中软件和它的运行环境的关系，并且描述了软件部署在硬件上的具体方式。</p>
+<p>部署图中的主要元素包括节点与节点之间的关联关系。此外，部署图中也可以使用注解和约束。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a302aee7ff89ce430bbae0d1a9155f86.png" alt="img"></p>
+<p>部署图的组成元素：节点、部署图中的关系。</p>
+<p>节点</p>
+<p>节点是运行时的物理对象，代表一个计算资源。</p>
+<p>在UML中，节点被分为两类：</p>
+<p>a.处理器：是一些具有计算能力的节点，并且一般可以运行软件。</p>
+<p>b.设备：是一些不具有计算能力的节点，它们可能作为一些输入输出设备或者本身是处理器的外部连接设备。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/4d9234308cb8fd56a7afb4aa62134796.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/aaa080c7cdf25030325dbcaf722ac1c6.png" alt="img"></p>
+<p>部署图中的关系</p>
+<p>部署图的节点之间使用关联关系来表示节点之间的通信路径，称为连接。</p>
+<p>一般对关联关系不进行命名，而是使用构造型来区分不同类型的通信路径或通信的实现方式，例如&lt;&gt;、&lt;&lt;TCP&#x2F;IP&gt;&gt;和&lt;&gt;等能表明通信协议或网络类型的内容。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d9705c43f256fa46cfdb1d02c8723411.png" alt="img"></p>
+<p>部署图建模技术</p>
+<p>对系统使用部署图进行建模，一般会用于以下三种方式之一：嵌入式系统、B&#x2F;S系统和全分布式系统。</p>
+<p>对系统物理结构建模：</p>
+<p>识别系统中的设备，并建模为节点。</p>
+<p>使用构造型对不同种类的节点进行限制说明。如果可能，可以利用扩展机制创建适当的图标来表示。至少要区分出处理器与设备。</p>
+<p>对图中的节点，分析哪些节点之间需要进行通信，在这些节点之间建立关系并用适当的构造型来描述。</p>
+<p>如果需要，添加注解和约束来对模型进一步描述。</p>
+<p>部署图的建模步骤：</p>
+<p>1.找到需要的部署的各个节点，如网络硬件设备、服务器设备等</p>
+<p>2.确定各个节点之间的链接及通信方式</p>
+<p>3.从性能、可扩展性、可维护性、可以执行角度确定各类节点的数目及部署方式</p>
+<p>4.绘制部署图</p>
+<p>例子</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/6f86cc219867b91265cdb10e0c1c35be.png" alt="img"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">屠一乐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E6%80%9D%E6%83%B3%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/">http://example.com/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E6%80%9D%E6%83%B3%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">屠一乐</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/uml-%E5%AD%A6%E4%B9%A0-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">uml 学习 软件工程</a></div><div class="post_share"><div class="social-share" data-image="https://view.lixingyong.com/images/2022/08/12/wallhaven-k7oy57_1920x1080.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://view.lixingyong.com/images/2023/04/28/mm_facetoface_collect_qrcode_1682691038620.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://view.lixingyong.com/images/2023/04/28/1682691081397.jpeg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="要请我喝冰阔落嘛"/></a><div class="post-qr-code-desc">要请我喝冰阔落嘛</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/28/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A8%A1%E6%9D%BF%E3%80%91/" title="【蓝桥杯模板】"><img class="cover" src="https://view.lixingyong.com/images/2022/08/11/wallhaven-6oxgp6_1920x1080.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【蓝桥杯模板】</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/21/%E3%80%90UML%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80%E3%80%912%E4%B8%87%E5%AD%97%E8%B6%85%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/" title="【UML统一建模语言】2万字超详细学习笔记（1）"><img class="cover" src="https://view.lixingyong.com/images/2022/08/19/v2-ef2e9cc677d9c75eda93b2ebd5ab2ba0_r.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【UML统一建模语言】2万字超详细学习笔记（1）</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://view.lixingyong.com/images/2023/04/28/53c27054648a9423.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">屠一乐</div><div class="author-info__description">屠一乐的个人博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/tuyile-icu"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/tuyile-icu" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="mailto:3189248615@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这里有很多好康的学习资料哦🤣🤣</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#UML"><span class="toc-number">1.</span> <span class="toc-text">UML</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E5%9B%BE"><span class="toc-number"></span> <span class="toc-text">通信图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-number"></span> <span class="toc-text">时序图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%9B%BE"><span class="toc-number"></span> <span class="toc-text">状态图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B4%BB%E5%8A%A8%E5%9B%BE"><span class="toc-number"></span> <span class="toc-text">活动图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%9B%BE"><span class="toc-number"></span> <span class="toc-text">组件图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%9B%BE"><span class="toc-number"></span> <span class="toc-text">部署图</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/29/uml%E5%9B%BE/" title="uml图"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-pk6d9j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="uml图"/></a><div class="content"><a class="title" href="/2023/04/29/uml%E5%9B%BE/" title="uml图">uml图</a><time datetime="2023-04-28T18:56:40.000Z" title="发表于 2023-04-29 02:56:40">2023-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/28/hello-world/" title="Hello World"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-pk6d9j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2023/04/28/hello-world/" title="Hello World">Hello World</a><time datetime="2023-04-28T06:47:22.938Z" title="发表于 2023-04-28 14:47:22">2023-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day02/" title="Java设计模式-day02"><img src="https://view.lixingyong.com/images/2022/08/19/v2-b50a22dd3b9f2fa877b37058fa8c9607_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java设计模式-day02"/></a><div class="content"><a class="title" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day02/" title="Java设计模式-day02">Java设计模式-day02</a><time datetime="2023-04-22T16:34:44.000Z" title="发表于 2023-04-23 00:34:44">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day01/" title="Java设计模式-day01"><img src="https://view.lixingyong.com/images/2022/08/12/wallhaven-8oz17j_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java设计模式-day01"/></a><div class="content"><a class="title" href="/2023/04/23/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-day01/" title="Java设计模式-day01">Java设计模式-day01</a><time datetime="2023-04-22T16:32:34.000Z" title="发表于 2023-04-23 00:32:34">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/10/2023%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFJava_%E5%A4%A7%E5%AD%A6B%E7%BB%84%E7%9C%9F%E9%A2%98/" title="2023年第十四届蓝桥杯Java_大学B组真题"><img src="https://view.lixingyong.com/images/2022/08/15/wallhaven-n6rp1l_1920x1080.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2023年第十四届蓝桥杯Java_大学B组真题"/></a><div class="content"><a class="title" href="/2023/04/10/2023%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFJava_%E5%A4%A7%E5%AD%A6B%E7%BB%84%E7%9C%9F%E9%A2%98/" title="2023年第十四届蓝桥杯Java_大学B组真题">2023年第十四届蓝桥杯Java_大学B组真题</a><time datetime="2023-04-10T08:51:38.000Z" title="发表于 2023-04-10 16:51:38">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By 屠一乐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">又来找我玩啦🥰</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
